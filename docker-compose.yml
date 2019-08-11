@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+
+  api:
+    build: api
+    working_dir: /app/api
+    volumes:
+      - ./api:/app/api
+    ports:
+      - 8000:8000
+    command: npm run start
+    depends_on:
+      - mongo
+
+  client:
+    build: client
+    working_dir: /app/client
+    volumes:
+      - ./client:/app/client
+    ports:
+      - 3000:3000
+    command: npm run dev
+    depends_on:
+    - api
+
+  # nginx:
+  #   build: nginx
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+  #   ports:
+  #     - 3000:3000
+  #     - 8000:8000
+  #   depends_on:
+  #     - client
+  #     - api

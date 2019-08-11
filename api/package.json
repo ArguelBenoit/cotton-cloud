@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "description": "api of cotton-cloud",
+  "scripts": {
+    "start": "npm i && node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-benoitarguel": "^0.2.2",
+    "eslint-plugin-react": "^7.14.3"
+  }
+}

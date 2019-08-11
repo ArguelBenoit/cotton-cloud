@@ -1,0 +1,8 @@
+{
+  "name": "cotton-cloud",
+  "version": "0.1.0",
+  "description": "A very simple web cloud client, focused on the storage of personal files. No database and provided with a very simple instalation",
+  "repository": "https://github.com/ArguelBenoit/cotton-cloud",
+  "author": "Benoit Arguel",
+  "license": "UNLICENSED"
+}

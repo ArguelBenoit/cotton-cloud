@@ -1,0 +1,49 @@
+.liSideBar  {
+  list-style-type: none;
+  color: #383838;
+  z-index: 1;
+  padding-top: 50px;
+  li {
+    margin-bottom: 0px;
+    padding: 0 10px;
+    height: 52px;
+    box-sizing: border-box;
+    border-right: solid 3px transparent;
+    transition-duration: 200ms;
+    span { margin-left: 10px; }
+    svg {
+      position: relative;
+      top: 10px;
+      height: 20px;
+      width: 20px;
+      padding: 6px;
+      background: #909090;
+      border-radius: 50%;
+      color: white;
+    }
+    &:hover,
+    &:focus {
+      background: #e2e1e0;
+      border-right: solid 3px transparent;
+      svg { background: #20232a; }
+    }
+    &.active {
+      background: #dbdbdb;
+      border-right: solid 3px #20232a;
+      svg { background: #20232a; }
+    }
+    &:active {
+      background: #d3d0d0;
+      border-right: solid 3px transparent;
+    }
+    &.small {
+      height: 40px;
+      svg {
+        top: 8px;
+        height: 16px;
+        width: 16px;
+        padding: 4px;
+      }
+    }
+  }
+}
