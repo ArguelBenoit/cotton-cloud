@@ -1,5 +1,5 @@
-let express = require('express');
-let app = express();
+const express = require('express');
+const app = express();
 
 let server = require('http').createServer(app);
 server.listen(process.env.PORT || 81);
@@ -11,9 +11,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-// essayer d'afficher cette action à la racine. "app.use('/', viewe..."
-const viewer = require('./routes/viewer').router;
-app.use('/viewer', viewer());
+// ---
 
-// const tafForecastRouter = require('./routes/tafForecastRouter').router;
-// app.use('/v2/taf-forecast', tafForecastRouter(db));
+const files = require('./src/routes/files').router;
+// const zip = require('./src/routes/zip').router;
+app.use('/files', files());
+// app.use('/zip', zip());
