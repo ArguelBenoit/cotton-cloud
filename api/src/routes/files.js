@@ -5,7 +5,7 @@ const tar = require('tar');
 const router = express.Router();
 
 const getFileIntoFolder = require('../functions/getFileIntoFolder');
-const repository = require('../../../config.json')['repository'];
+const repository = require('../../config.json')['repository'];
 const parsePath = require('../functions/parsePath');
 
 

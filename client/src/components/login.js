@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'Utils/request';
-import emailValidation from 'Utils/emailValidation';
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
 import { setJwtCookie } from 'Utils/jwtCookie';
 import 'Styles/login.less';
 
 const placeholder = {
   init : {
-    login: 'Email or username',
+    login: 'Username',
     password: 'Password'
   },
   error: {
-    login: 'Incorrect email or username',
+    login: 'Incorrect username',
     password: 'Or incorrect password'
   }
 };
@@ -77,7 +76,7 @@ export default class extends React.Component {
     event.preventDefault();
     const { login, password } = this.state;
     let postObj = {
-      [emailValidation(login) ? 'email' : 'username']: login,
+      ['username']: login,
       password
     };
     request('post', '/api/users/authenticate', postObj)
@@ -85,7 +84,7 @@ export default class extends React.Component {
         setJwtCookie(res.data.id_token, '/dashboard');
       })
       .catch(err => {
-        if (err.response && err.response.data.message === 'Incorrect username or email!') {
+        if (err.response && err.response.data.message === 'Incorrect username!') {
           this.globalErrorHandler();
         }
         if (
@@ -95,7 +94,7 @@ export default class extends React.Component {
         ) {
           err.response.data.validation.keys.forEach(key => {
             switch (key) {
-              case 'username' || 'email':
+              case 'username':
                 this.toggleBorderError('login', true);
                 break;
               case 'password':
@@ -118,7 +117,7 @@ export default class extends React.Component {
     return <div className="login u-max-width-l">
       <h1>Login</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+        For security reasons but also for simplicity in development, you can not create an account and you can not change your connection information directly on the client. However, account management tools are present in the API's npm commands, for this, observe the script commands declared in the package.json file of the API directory of your cotton-cloud installation.
       </p>
       <form className="u-max-width-m" onSubmit={this.handleSubmit}>
         <input

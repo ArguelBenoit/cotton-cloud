@@ -1,53 +1,50 @@
 
 .sideBar {
   transition-duration: 500ms;
-  overflow: hidden;
+  overflow-y: auto;
   width: 240px;
   position: fixed;
-  min-height: 100vh;
+  top: 70px; // header width
   background: #eae9e9;
-  color: #ccc;
-  left: -240px;
   z-index: 1;
-  &.menuActive {
-    left: 0px
-  }
-  a, a:hover { color: #383838; }
-  .logo {
-    border-radius: 3px;
-    margin: 15px;
-    border: 2px dashed #555;
-    padding: 40px 20px;
-    font-size: 24px;
-    text-align: center;
-    background: rgba(100, 100, 100, 0.15);
-  }
+  display: flex;
+  flex-direction: column;
+  left: -240px;
+  &.menuActive { left: 0px; }
+  main { flex: 1; }
+  footer { padding: 12px; }
   ul {
     overflow: hidden;
+    a, a:hover { color: #383838; }
+    &:first-child { margin-top: 15px; }
   }
-  .toggleButton {
-    display: none;
-    width: 50px;
-    height: 50px;
-    background: #2f2f2f;
-    position: absolute;
-    top: 50%;
-    left: 205px;
-    margin-top: -33px;
-    border-radius: 50%;
-    border: 8px solid #202020;
-    svg {
-      color: #ccc;
-      height: 24px;
-      width: 24px;
-      padding: 13px;
-      transform: rotateY(180deg) translateX(-12px);
+}
+
+.storeInfo  {
+  padding: 20px 0;
+  margin: 20px 0;
+  margin-top: 0px;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  .container-bar {
+    height: 12px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    div {
+      position: relative;
+      width: 100px;
+      height: 12px;
+      border-radius: 5px 0 0 5px;
+      &:first-child {
+        background: #32998a;
+        width: 40px;
+      }
+      &:last-child {
+        background: #f90;
+        width: 25px;
+        margin-top: -12px;
+      }
     }
-    &:toggled svg {
-      transform: translateX(12px);
-    }
-  }
-  ul:first-child {
-    margin-top: 95px;
   }
 }

@@ -8,10 +8,8 @@ services:
     volumes:
       - ./api:/app/api
     ports:
-      - 8000:8000
+      - 81:81
     command: npm run start
-    depends_on:
-      - mongo
 
   client:
     build: client

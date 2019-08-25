@@ -1,6 +1,6 @@
 
-FROM node:10
+FROM node:12
 
-WORKDIR /app/hapi
+WORKDIR /app/api
 
 COPY . .

@@ -11,7 +11,7 @@ let Header = props => {
       <div />
     </div>
     <h1>
-      MediaMama
+      CottonCloud
     </h1>
   </header>;
 };

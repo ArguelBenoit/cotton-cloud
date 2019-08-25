@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const repository = require('../../../config.json')['repository'];
+const repository = require('../../config.json')['repository'];
 const parsePath = require('./parsePath');
 
 module.exports = route => {

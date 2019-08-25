@@ -1,6 +1,6 @@
 
-FROM node:10
+FROM node:12
 
-WORKDIR /app/react
+WORKDIR /app/client
 
 COPY . .
