@@ -1,5 +1,5 @@
 import React from 'react';
-import 'Styles/toolBox.less';
+import 'Styles/storeInfo.less';
 // import PropTypes from 'prop-types';
 
 let StoreInfo = () => {

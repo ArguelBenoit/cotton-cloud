@@ -1,50 +1,28 @@
 
 .sideBar {
   transition-duration: 500ms;
-  overflow-y: auto;
   width: 240px;
+  height: 100%;
   position: fixed;
-  top: 70px; // header width
   background: #eae9e9;
-  z-index: 1;
   display: flex;
   flex-direction: column;
+  z-index: 1;
   left: -240px;
   &.menuActive { left: 0px; }
-  main { flex: 1; }
-  footer { padding: 12px; }
-  ul {
-    overflow: hidden;
-    a, a:hover { color: #383838; }
-    &:first-child { margin-top: 15px; }
+  .marginTop {
+    height: 70px;
   }
-}
-
-.storeInfo  {
-  padding: 20px 0;
-  margin: 20px 0;
-  margin-top: 0px;
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
-  .container-bar {
-    height: 12px;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 5px;
-    div {
-      position: relative;
-      width: 100px;
-      height: 12px;
-      border-radius: 5px 0 0 5px;
-      &:first-child {
-        background: #32998a;
-        width: 40px;
-      }
-      &:last-child {
-        background: #f90;
-        width: 25px;
-        margin-top: -12px;
-      }
+  .main {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    main { flex: 1; }
+    footer { padding: 12px; }
+    ul {
+      overflow: hidden;
     }
   }
 }

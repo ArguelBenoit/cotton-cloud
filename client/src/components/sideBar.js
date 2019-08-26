@@ -49,33 +49,35 @@ class SideBar extends React.Component {
   }
   render() {
     const { location } = this.state;
-    const { menuActive, height } = this.props;
+    const { menuActive } = this.props;
     const className = `sideBar ${menuActive ? 'menuActive' : ''}`;
-    return <div className={className} style={{height: `${height-70}px`}}>
-      <main>
-        <ul>
-          {firstUl.map(
-            (e, i) => <LiSideBar key={'firstMenu' + i} location={location} {...e} />
-          )}
-        </ul>
-      </main>
-      <footer>
-        <StoreInfo/>
-        <div className="u-margin-bottom-five u-font-size-xl">What?</div>
-        <div className="u-margin-bottom-five">
-          CottonCloud is a cloud client for storing and reading personal files. It is very easy to use and its code is deliberately simple in order to offer a stable base that can be modified as desired.
-        </div>
-        <a className="u-font-size-l u-flex-line" href="https://github.com/ArguelBenoit/cotton-cloud" target="_blank">
-          <GoMarkGithub/>&nbsp;CottonCloud on GitHub
-        </a>
-      </footer>
+    return <div className={className}>
+      <div className="marginTop"/>
+      <div className="main">
+        <main>
+          <ul>
+            {firstUl.map(
+              (e, i) => <LiSideBar key={'firstMenu' + i} location={location} {...e} />
+            )}
+          </ul>
+        </main>
+        <footer>
+          <StoreInfo/>
+          <div className="u-margin-bottom-five u-font-size-xl">What?</div>
+          <div className="u-margin-bottom-five">
+            CottonCloud is a cloud client for storing and reading personal files. It is very easy to use and its code is deliberately simple in order to offer a stable base that can be modified as desired.
+          </div>
+          <a className="u-font-size-l u-flex-line" href="https://github.com/ArguelBenoit/cotton-cloud" target="_blank">
+            <GoMarkGithub/>&nbsp;CottonCloud on GitHub
+          </a>
+        </footer>
+      </div>
     </div>;
   }
 }
 
 SideBar.propTypes = {
-  menuActive: PropTypes.bool,
-  height: PropTypes.Number
+  menuActive: PropTypes.bool
 };
 
 export default SideBar;

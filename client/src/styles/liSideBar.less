@@ -3,6 +3,7 @@
   color: #383838;
   z-index: 1;
   padding-top: 50px;
+  cursor: pointer;
   li {
     margin-bottom: 0px;
     padding: 0 10px;
@@ -25,16 +26,12 @@
     &:focus {
       background: #e2e1e0;
       border-right: solid 3px transparent;
-      svg { background: #20232a; }
+      svg { background: #1eaedb !important; }
     }
     &.active {
-      background: #dbdbdb;
+      background: #d3d0d0;
       border-right: solid 3px #0d122a;
       svg { background: #0d122a; }
-    }
-    &:active {
-      background: #d3d0d0;
-      border-right: solid 3px transparent;
     }
   }
 }

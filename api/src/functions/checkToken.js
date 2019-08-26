@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-export function verifyJWTToken(token) {
+module.exports = token => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
       if (err || !decodedToken) {
@@ -9,4 +9,4 @@ export function verifyJWTToken(token) {
       resolve(decodedToken);
     });
   });
-}
+};
