@@ -1,12 +1,21 @@
 const jwt = require('jsonwebtoken');
+const privateKey = 'wekcLmfQO1%opjdJh$&qQahHBvP';
 
-module.exports = token => {
+
+module.exports = req => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
-      if (err || !decodedToken) {
+
+    let token = req.headers['authorization'];
+    if (!token) {
+      reject();
+    }
+
+    jwt.verify(token, privateKey, (err, decoded) => {
+      if (err || !decoded) {
         return reject(err);
       }
-      resolve(decodedToken);
+      resolve();
     });
+
   });
 };

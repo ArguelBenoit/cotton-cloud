@@ -1,7 +1,7 @@
 import React from 'react';
 import history from 'Utils/history';
 import { destroyJwtCookie } from 'Utils/jwtCookie';
-import { IoMdLogOut, IoMdLogIn } from 'react-icons/io';
+import { IoMdLogOut } from 'react-icons/io';
 import { MdHome } from 'react-icons/md';
 import { GoMarkGithub } from 'react-icons/go';
 import LiSideBar from 'Components/liSideBar';
@@ -12,23 +12,15 @@ import 'Styles/sideBar.less';
 
 const firstUl = [
   {
-   route: null,
-   name: 'Logout',
-   icon: <IoMdLogOut />,
-   action: () => destroyJwtCookie('/'),
-   color: null
- }, {
-    route: '/login',
-    name: 'Login',
-    icon: <IoMdLogIn />,
-    action: null,
-    color: null
+    route: null,
+    name: 'Logout',
+    icon: <IoMdLogOut />,
+    action: () => destroyJwtCookie('/login')
   }, {
     route: '/',
     name: 'Home /',
     icon: <MdHome />,
-    action: null,
-    color: null
+    action: null
   }
 ];
 

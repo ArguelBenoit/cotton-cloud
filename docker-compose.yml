@@ -9,7 +9,7 @@ services:
       - ./api:/app/api
     ports:
       - 81:81
-    command: npm run start
+    command: npm run watch
 
   client:
     build: client

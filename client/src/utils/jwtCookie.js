@@ -1,8 +1,7 @@
 import history from 'Utils/history';
-const jwtCookieName = 'datingJwt';
+const jwtCookieName = 'cottonCloudJwt';
 
 let setJwtCookie = (jwt, route) => {
-  // document.cookie = `datjwt=${jwt}; Secure; HttpOnly;`;
   document.cookie = `${jwtCookieName}=${jwt};`;
   if (route) {
     setTimeout(() => history.push(route), 100);
@@ -29,7 +28,7 @@ let getJwtCookie = () => {
       return c.substring(name.length, c.length);
     }
   }
-  return '';
+  return null;
 };
 
 export {

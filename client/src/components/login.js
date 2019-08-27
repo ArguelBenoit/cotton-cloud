@@ -5,16 +5,6 @@ import { FaEyeSlash, FaEye } from 'react-icons/fa';
 import { setJwtCookie } from 'Utils/jwtCookie';
 import 'Styles/login.less';
 
-const placeholder = {
-  init : {
-    login: 'Username',
-    password: 'Password'
-  },
-  error: {
-    login: 'Incorrect username',
-    password: 'Or incorrect password'
-  }
-};
 
 export default class extends React.Component {
   constructor (props) {
@@ -24,28 +14,17 @@ export default class extends React.Component {
     this.toggleBorderError = this.toggleBorderError.bind(this);
     this.globalErrorHandler = this.globalErrorHandler.bind(this);
     this.state = {
-      login: '',
+      name: '',
       password: '',
-      showPassword: false,
-      placeholderLogin: placeholder.init.login,
-      placeholderPassword: placeholder.init.password
+      showPassword: false
     };
   }
-  changeValue(event, name) {
+  changeValue(event, type) {
     let { value } = event.target;
     this.setState({
-      [name]: value
+      [type]: value
     });
-    this.toggleBorderError(name, false);
-    switch (name) {
-      case 'login':
-        this.setState({placeholderLogin: placeholder.init.login});
-        break;
-      case 'password':
-        this.setState({placeholderPassword: placeholder.init.password});
-        break;
-      default:
-    }
+    this.toggleBorderError(type, false);
   }
   toggleBorderError(ref, bool) {
     if (bool) {
@@ -61,58 +40,29 @@ export default class extends React.Component {
     }
   }
   globalErrorHandler() {
-    this.toggleBorderError('login', true);
+    this.toggleBorderError('name', true);
     this.toggleBorderError('password', true);
-    this.refs['login'].value = '';
+    this.refs['name'].value = '';
     this.refs['password'].value = '';
     this.setState({
-      login: '',
-      password: '',
-      placeholderLogin: placeholder.error.login,
-      placeholderPassword: placeholder.error.password
+      name: '',
+      password: ''
     });
   }
-  handleSubmit(event) {
-    event.preventDefault();
-    const { login, password } = this.state;
-    let postObj = {
-      ['username']: login,
-      password
-    };
-    request('post', '/api/users/authenticate', postObj)
+  handleSubmit(e) {
+    e.preventDefault();
+    request('post', '/user/login', this.state, 'noCookie')
       .then(res => {
-        setJwtCookie(res.data.id_token, '/dashboard');
-      })
-      .catch(err => {
-        if (err.response && err.response.data.message === 'Incorrect username!') {
-          this.globalErrorHandler();
-        }
-        if (
-          err.response &&
-          err.response.data.validation &&
-          err.response.data.validation.keys
-        ) {
-          err.response.data.validation.keys.forEach(key => {
-            switch (key) {
-              case 'username':
-                this.toggleBorderError('login', true);
-                break;
-              case 'password':
-                this.toggleBorderError('password', true);
-                break;
-              default:
-            }
-          });
-        }
+        setJwtCookie(res.data.token, '/');
+      }).catch(() => {
+        this.globalErrorHandler();
       });
   }
   render() {
     const {
       showPassword,
-      login,
-      password,
-      placeholderLogin,
-      placeholderPassword
+      name,
+      password
     } = this.state;
     return <div className="login u-max-width-l">
       <h1>Login</h1>
@@ -121,19 +71,19 @@ export default class extends React.Component {
       </p>
       <form className="u-max-width-m" onSubmit={this.handleSubmit}>
         <input
-          ref="login"
-          value={login}
+          ref="name"
+          value={name}
           type="text"
           className="u-full-width"
-          placeholder={placeholderLogin}
-          onChange={e => this.changeValue(e, 'login')}
+          placeholder="Username"
+          onChange={e => this.changeValue(e, 'name')}
         />
         <input
           ref="password"
           value={password}
           className="u-full-width"
           type={showPassword ? 'text' : 'password'}
-          placeholder={placeholderPassword}
+          placeholder="Password"
           onChange={e => this.changeValue(e, 'password')}
         />
         {!showPassword ?

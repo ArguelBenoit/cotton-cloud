@@ -4,6 +4,7 @@ import history from 'Utils/history';
 import PropTypes from 'prop-types';
 import request from 'Utils/request';
 
+
 class PrivateRoute extends React.Component {
   constructor(props) {
     super(props);
@@ -12,20 +13,20 @@ class PrivateRoute extends React.Component {
     };
   }
   componentDidMount() {
-    request('get', '/api/ping')
+    request('get', '/user/ping')
       .then(() => {
         this.setState({loged: true});
       }).catch(() => {
         this.setState({loged: false});
-        history.push('/');
+        history.push('/login');
       });
   }
   componentDidUpdate(prevProps) {
     if (this.props.path !== prevProps.path) {
-      request('get', '/api/ping')
+      request('get', '/user/ping')
         .then()
         .catch(() => {
-          history.push('/');
+          history.push('/login');
         });
     }
   }

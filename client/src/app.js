@@ -7,10 +7,11 @@ import history from 'Utils/history';
 import Header from 'Components/header';
 import SideBar from 'Components/sideBar';
 
+import PrivateRoute from 'Components/privateRoute';
 import Login from 'Pages/login';
 import Files from 'Pages/files';
 import Error from 'Pages/error';
-// import PrivateRoute from 'Components/privateRoute';
+
 
 class App extends React.Component {
   constructor (props) {
@@ -19,14 +20,11 @@ class App extends React.Component {
     this.resize = this.resize.bind(this);
     this.closeSideBarByContainer = this.closeSideBarByContainer.bind(this);
     this.state = {
-      menuActive: false,
+      menuActive: window.innerWidth > 800 ? true : false,
       smallScreen: window.innerWidth > 800 ? false : true || false,
       height: window.innerHeight,
       width: window.innerWidth
     };
-  }
-  componentWillMount() {
-    this.resize();
   }
   componentDidMount() {
     window.addEventListener('resize', this.resize);
@@ -63,7 +61,7 @@ class App extends React.Component {
       <div className={classContainer} onClick={this.closeSideBarByContainer}>
         <div className="container">
           <Switch>
-            <Route path="/" exact component={Files} />
+            <PrivateRoute path="/" exact component={Files} />
             <Route path="/login" exact component={Login} />
             <Route component={Error} />
           </Switch>
