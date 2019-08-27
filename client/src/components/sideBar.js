@@ -3,11 +3,11 @@ import history from 'Utils/history';
 import { destroyJwtCookie } from 'Utils/jwtCookie';
 import { IoMdLogOut } from 'react-icons/io';
 import { MdHome } from 'react-icons/md';
-import { GoMarkGithub } from 'react-icons/go';
 import LiSideBar from 'Components/liSideBar';
 import StoreInfo from 'Components/storeInfo';
 import PropTypes from 'prop-types';
 import 'Styles/sideBar.less';
+import EventEmitter from 'Utils/eventEmitter';
 
 
 const firstUl = [
@@ -15,10 +15,15 @@ const firstUl = [
     route: null,
     name: 'Logout',
     icon: <IoMdLogOut />,
-    action: () => destroyJwtCookie('/login')
+    action: () => destroyJwtCookie()
   }, {
     route: '/',
     name: 'Home /',
+    icon: <MdHome />,
+    action: null
+  }, {
+    route: '/test',
+    name: 'Test',
     icon: <MdHome />,
     action: null
   }
@@ -29,7 +34,8 @@ class SideBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: window.location.pathname
+      location: window.location.pathname,
+      active: false
     };
   }
   componentDidMount() {
@@ -38,11 +44,13 @@ class SideBar extends React.Component {
         location: pathname
       });
     });
+    EventEmitter.subscribe('toggleMenu', () => {
+      this.setState({ active: !this.state.active });
+    });
   }
   render() {
-    const { location } = this.state;
-    const { menuActive } = this.props;
-    const className = `sideBar ${menuActive ? 'menuActive' : ''}`;
+    const { location, active } = this.state;
+    const className = `sideBar ${active ? 'active' : ''}`;
     return <div className={className}>
       <div className="marginTop"/>
       <div className="main">
@@ -55,13 +63,6 @@ class SideBar extends React.Component {
         </main>
         <footer>
           <StoreInfo/>
-          <div className="u-margin-bottom-five u-font-size-xl">What?</div>
-          <div className="u-margin-bottom-five">
-            CottonCloud is a cloud client for storing and reading personal files. It is very easy to use and its code is deliberately simple in order to offer a stable base that can be modified as desired.
-          </div>
-          <a className="u-font-size-l u-flex-line" href="https://github.com/ArguelBenoit/cotton-cloud" target="_blank">
-            <GoMarkGithub/>&nbsp;CottonCloud on GitHub
-          </a>
         </footer>
       </div>
     </div>;

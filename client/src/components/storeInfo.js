@@ -1,6 +1,5 @@
 import React from 'react';
 import 'Styles/storeInfo.less';
-// import PropTypes from 'prop-types';
 
 let StoreInfo = () => {
   let style = {
@@ -30,10 +29,5 @@ let StoreInfo = () => {
     </div>
   </div>;
 };
-
-// StoreInfo.propTypes = {
-//   smallScreen: PropTypes.bool,
-//   clickMenu: PropTypes.func
-// };
 
 export default StoreInfo;

@@ -1,18 +1,14 @@
-import history from 'Utils/history';
 const jwtCookieName = 'cottonCloudJwt';
 
-let setJwtCookie = (jwt, route) => {
+
+let setJwtCookie = jwt => {
   document.cookie = `${jwtCookieName}=${jwt};`;
-  if (route) {
-    setTimeout(() => history.push(route), 100);
-  }
+  setTimeout(() => window.location.href = '/', 100);
 };
 
-let destroyJwtCookie = route => {
+let destroyJwtCookie = () => {
   document.cookie = `${jwtCookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-  if (route) {
-    history.push(route);
-  }
+  setTimeout(() => window.location.href = '/', 100);
 };
 
 let getJwtCookie = () => {
@@ -30,6 +26,7 @@ let getJwtCookie = () => {
   }
   return null;
 };
+
 
 export {
   setJwtCookie,

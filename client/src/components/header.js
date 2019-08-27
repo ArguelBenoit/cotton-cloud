@@ -1,24 +1,32 @@
 import React from 'react';
 import 'Styles/header.less';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import EventEmitter from 'Utils/eventEmitter';
 
 let Header = props => {
-  const { clickMenu, smallScreen } = props;
-  return <header className={smallScreen ? 'smallScreen' : ''}>
-    <div className="button-menu" onClick={clickMenu}>
-      <div />
-      <div />
-      <div />
-    </div>
+  const { noMenu } = props;
+  return <header>
+    {noMenu ? '' :
+      <div
+        className="button-menu"
+        onClick={() => EventEmitter.dispatch('toggleMenu')}
+      >
+        <div />
+        <div />
+        <div />
+      </div>
+    }
     <h1>
-      CottonCloud
+      <Link to={'/'}>
+        CottonCloud
+      </Link>
     </h1>
   </header>;
 };
 
 Header.propTypes = {
-  smallScreen: PropTypes.bool,
-  clickMenu: PropTypes.func
+  noMenu: PropTypes.bool
 };
 
 export default Header;

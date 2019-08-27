@@ -5,6 +5,6 @@ export default class extends React.Component {
     super(props);
   }
   render() {
-    return <div style={{background: 'red', width: '100%', height: '400px'}} />;
+    return <div style={{background: 'green', width: '100%', height: '400px'}} />;
   }
 }
