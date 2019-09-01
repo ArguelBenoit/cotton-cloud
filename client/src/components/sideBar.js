@@ -21,11 +21,6 @@ const firstUl = [
     name: 'Home /',
     icon: <MdHome />,
     action: null
-  }, {
-    route: '/test',
-    name: 'Test',
-    icon: <MdHome />,
-    action: null
   }
 ];
 

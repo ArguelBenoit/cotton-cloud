@@ -7,7 +7,7 @@ export default (type, route, data = {}) => {
   axios
     .defaults
     .headers
-    .common['Authorization'] = `${getJwtCookie()}`;
+    .common['authorization'] = `${getJwtCookie()}`;
   return axios[type](`${apiUrl}${route}`, data);
 };
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs-extra');
 const tar = require('tar');
+const checkToken = require('../functions/checkToken');
 
 const router = express.Router();
 
@@ -13,30 +14,35 @@ const parsePath = require('../functions/parsePath');
 exports.router = () => {
   return router
 
-    .get('/', (req, res) => {
-      const path = req.param('path');
-      if (!path) {
-        res.send('don\'t forget ?path=/example/example');
-      }
-      const files = getFileIntoFolder(path);
-      res.json(files);
+    .get(/* /files */ '/', (req, res) => {
+      checkToken(req.headers['authorization']).then(() => {
+        const path = req.param('path');
+        if (!path) {
+          const files = getFileIntoFolder('/');
+          res.status(200).json(files);
+        }
+        const files = getFileIntoFolder(path);
+        res.status(200).json(files);
+      }).catch(() => {
+        res.status(401).json({ message: 'Your are not connected' });
+      });
     })
 
     // todo :
-    // .get('download', (req, res) => {
+    // .get(/* /files */ 'download', (req, res) => {
     //   // action
     // })
     // ---
-    // .post('upload', (req, res) => {
+    // .post(/* /files */ 'upload', (req, res) => {
     //   // action
     // })
     // ---
 
-    .post('/move', (req, res) => {
+    .post(/* /files */ '/move', (req, res) => {
       const from = req.param('from');
       const to = req.param('to');
       if (!from || !to) {
-        res.send('don\'t forget ?from=/example/example&to=/example');
+        res.send('don\'t forget ?from=example/example&to=example/');
       }
       const route = parsePath(repository, from);
       const newRoute = parsePath(repository, to);
@@ -48,11 +54,11 @@ exports.router = () => {
         });
     })
 
-    .post('/copy', (req, res) => {
+    .post(/* /files */ '/copy', (req, res) => {
       const from = req.param('from');
       const to = req.param('to');
       if (!from || !to) {
-        res.send('don\'t forget ?from=/example/example&to=/example');
+        res.send('don\'t forget ?from=example/example&to=example');
       }
       const route = parsePath(repository, from);
       const newRoute = parsePath(repository, to);
@@ -64,10 +70,10 @@ exports.router = () => {
         });
     })
 
-    .post('/mkdir', (req, res) => {
+    .post(/* /files */ '/mkdir', (req, res) => {
       const path = req.param('path');
       if (!path) {
-        res.send('don\'t forget ?path=/example/example');
+        res.send('don\'t forget ?path=example/examples');
       }
       const route = parsePath(repository, path);
       fs.mkdir(route)
@@ -78,10 +84,10 @@ exports.router = () => {
         });
     })
 
-    .delete('/remove', (req, res) => {
+    .delete(/* /files */ '/remove', (req, res) => {
       const path = req.param('path');
       if (!path) {
-        res.send('don\'t forget ?path=/example/example.jpg');
+        res.send('don\'t forget ?path=example/example.jpg');
       } else {
         const route = parsePath(repository, path);
         fs.remove(route)
@@ -93,11 +99,12 @@ exports.router = () => {
       }
     })
 
-    .post('/targz', (req, res) => {
+    // erreur de route sur targz
+    .post(/* /files */ '/targz', (req, res) => {
       const path = req.param('path');
       const name = req.param('name');
       if (!path && !name) {
-        res.send('don\'t forget ?path=/example/example&name=example');
+        res.send('don\'t forget ?path=example/example&name=example');
       }
       const route = parsePath(repository, path);
       tar.create({
@@ -111,10 +118,10 @@ exports.router = () => {
         });
     })
 
-    .post('/untar', (req, res) => {
+    .post(/* /files */ '/untar', (req, res) => {
       const path = req.param('path');
       if (!path) {
-        res.send('don\'t forget ?path=/example/example.tar.gz');
+        res.send('don\'t forget ?path=example/example.tar.gz');
       }
       const route = parsePath(repository, path);
       tar.extract({file: route})

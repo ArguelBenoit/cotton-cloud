@@ -16,7 +16,7 @@ exports.router = () => {
     })
 
     .get('/ping', (req, res) => {
-      checkToken(req).then(() => {
+      checkToken(req.headers['authorization']).then(() => {
         res.status(200).json({ message: 'pong' });
       }).catch(() => {
         res.status(401).json({ message: 'Your are not connected' });

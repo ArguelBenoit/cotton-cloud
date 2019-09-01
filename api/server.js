@@ -4,6 +4,7 @@ const app = express();
 
 const files = require('./src/routes/files').router;
 const user = require('./src/routes/user').router;
+const disk = require('./src/routes/disk').router;
 
 // ---
 
@@ -19,3 +20,4 @@ app.use(function(req, res, next) {
 
 app.use('/user', user());
 app.use('/files', files());
+app.use('/disk', disk());

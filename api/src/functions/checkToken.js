@@ -2,10 +2,9 @@ const jwt = require('jsonwebtoken');
 const privateKey = 'wekcLmfQO1%opjdJh$&qQahHBvP';
 
 
-module.exports = req => {
+module.exports = token => {
   return new Promise((resolve, reject) => {
 
-    let token = req.headers['authorization'];
     if (!token) {
       reject();
     }

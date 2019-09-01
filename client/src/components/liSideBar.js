@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import 'Styles/liSideBar.less';
 
 let LiSideBar = props => {
   const { route, icon, name, location, action } = props;

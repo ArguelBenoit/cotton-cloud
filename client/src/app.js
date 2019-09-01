@@ -7,7 +7,6 @@ import Header from 'Components/header';
 import SideBar from 'Components/sideBar';
 import Login from 'Pages/login';
 import Files from 'Pages/files';
-import Test from 'Pages/test';
 import Error from 'Pages/error';
 
 import { getJwtCookie } from 'Utils/jwtCookie';
@@ -21,7 +20,7 @@ class App extends React.Component {
       {!getJwtCookie() ?
         <div>
           <Header noMenu />
-          <div className="container" style={{paddingTop: '100px'}}>
+          <div className="container container-login-page" style={{paddingTop: '100px'}}>
             <Switch>
               <Route path="/" exact component={Login} />
               <Route component={Error} />
@@ -35,7 +34,6 @@ class App extends React.Component {
           <div className="container" style={{paddingTop: '100px'}}>
             <Switch>
               <Route path="/" exact component={Files} />
-              <Route path="/test" exact component={Test} />
               <Route component={Error} />
             </Switch>
           </div>

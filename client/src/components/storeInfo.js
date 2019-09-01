@@ -1,5 +1,4 @@
 import React from 'react';
-import 'Styles/storeInfo.less';
 
 let StoreInfo = () => {
   let style = {

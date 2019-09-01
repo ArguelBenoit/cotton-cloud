@@ -1,0 +1,71 @@
+
+.filePage {
+
+  header {
+    margin-bottom: 20px;
+  }
+
+  .path {
+    width: 100%;
+    a {
+      color: inherit;
+      padding: 0 6px;
+      border-radius: 2px;
+      &:hover {
+        background: #eee;
+      }
+    }
+    svg {
+      width: 34px;
+      height: 34px;
+      margin-right: 12px;
+    }
+  }
+
+  .sorting {
+    svg {
+      border-radius: 2px;
+      margin-left: 6px;
+      background: #eee;
+      padding: 5px;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      &.active {
+        background: #c2c2cd;
+      }
+    }
+  }
+
+  .contentFile {
+    height: 60px;
+    width: 100%;
+    color: #444;
+    background: #eee;
+    border-radius: 2px;
+    margin-bottom: 12px;
+    &.clicked {
+      background: #c2c2cd;
+      // box-shadow: 2px 2px 4px #d2d2d2;
+    }
+    cursor: pointer;
+    svg { margin: 0 12px; }
+    .name { width: 100%; }
+    .size {
+      margin-right: 12px;
+      opacity: 0.7;
+    }
+    &.folder {
+      height: 60px;
+      svg {
+        height: 34px;
+        width: 34px;
+      }
+    }
+    &.file {
+      height: 40px;
+      opacity: 0.85;
+    }
+  }
+
+}

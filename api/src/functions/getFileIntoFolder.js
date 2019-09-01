@@ -8,13 +8,15 @@ module.exports = route => {
   let response = [];
   for (let file of files) {
     let __route = parsePath(_route, file);
-    fs.statSync(__route).then(res => {
-      response.push({
-        name: file,
-        path: __route,
-        size: res.size,
-        directory: res.isDirectory()
-      });
+    let fileState = fs.statSync(__route);
+    response.push({
+      name: file,
+      path: __route,
+      shortPath: (route + file),
+      size: fileState.size,
+      isDirectory: fileState.isDirectory(),
+      type: !fileState.isDirectory() ? file.split('.').pop() : 'directory',
+      selected: false
     });
   }
   return response;

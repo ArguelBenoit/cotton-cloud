@@ -7,6 +7,7 @@
   background: #eae9e9;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   z-index: 1;
   left: -240px;
   &.active { left: 0px; }
@@ -25,4 +26,67 @@
       overflow: hidden;
     }
   }
+
+  .liSideBar  {
+    list-style-type: none;
+    color: #383838;
+    z-index: 1;
+    padding-top: 50px;
+    cursor: pointer;
+    li {
+      margin-bottom: 0px;
+      padding: 0 10px;
+      height: 52px;
+      box-sizing: border-box;
+      border-right: solid 3px transparent;
+      transition-duration: 200ms;
+      span { margin-left: 10px; }
+      svg {
+        position: relative;
+        top: 10px;
+        height: 20px;
+        width: 20px;
+        padding: 6px;
+        background: #909090;
+        border-radius: 50%;
+        color: white;
+      }
+      &:hover,
+      &:focus {
+        background: #e2e1e0;
+        svg { background: #1eaedb !important; }
+      }
+      &.active {
+        background: #d3d0d0;
+        svg { background: #0d122a; }
+      }
+    }
+  }
+
+  .storeInfo  {
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+    .container-bar {
+      height: 12px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 4px;
+      div {
+        position: relative;
+        width: 100px;
+        height: 12px;
+        border-radius: 5px 0 0 5px;
+        &:first-child {
+          background: #32998a;
+          width: 40px;
+        }
+        &:last-child {
+          background: #f90;
+          width: 25px;
+          margin-top: -12px;
+        }
+      }
+    }
+  }
+
 }

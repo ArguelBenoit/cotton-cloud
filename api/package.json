@@ -2,8 +2,8 @@
   "name": "api",
   "description": "api of cotton-cloud",
   "scripts": {
-    "start": "npm i && node server.js",
-    "watch": "npm i && npm i -g nodemon && nodemon server.js"
+    "dev": "npm i && npm i -g nodemon && nodemon server.js",
+    "start": "npm i && node server.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

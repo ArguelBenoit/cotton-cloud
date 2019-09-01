@@ -6,7 +6,7 @@ import EventEmitter from 'Utils/eventEmitter';
 
 let Header = props => {
   const { noMenu } = props;
-  return <header>
+  return <header className="mainHeader">
     {noMenu ? '' :
       <div
         className="button-menu"
