@@ -15,7 +15,7 @@ export default class extends React.Component {
     super(props);
     this.requestFiles = this.requestFiles.bind(this);
     this.sortFiles = this.sortFiles.bind(this);
-    // this.selectFile = this.selectFile.bind(this);
+    this.selectFile = this.selectFile.bind(this);
     this.state = {
       files: [],
       filesSorted: [],
@@ -39,10 +39,10 @@ export default class extends React.Component {
       console.log(err);
     });
   }
-  // selectFile(index) {
-  //   // maj sur filesSorted;
-  //   alert(index, ' is selected');
-  // }
+  selectFile(index) {
+    // maj sur filesSorted;
+    alert(index, ' is selected');
+  }
   sortFiles(type) {
     let { files } = this.state;
     let sorted;

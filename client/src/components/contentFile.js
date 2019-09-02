@@ -6,16 +6,11 @@ import { FaFile, FaFileAlt, FaFileArchive, FaFileAudio, FaFileCode, FaFileCsv, F
 class ContentFile extends React.Component {
   constructor(props) {
     super(props);
-    this.selectElement = this.selectElement.bind(this);
     this.clickElement = this.clickElement.bind(this);
     this.state = {
       clicked: false,
       count: 0
     };
-  }
-  selectElement() {
-    let { clicked } = this.state;
-    this.setState({ clicked: !clicked });
   }
   clickElement() {
     let { count } = this.state;
@@ -27,7 +22,9 @@ class ContentFile extends React.Component {
         alert('ouverture du fichier ' + name);
       }
     } else {
-      this.selectElement();
+      let { index, selectFile } = this.props;
+      selectFile(index);
+      this.setState({ clicked: !this.state.clicked });
       this.setState({ count: count+1 });
       setTimeout(() => this.setState({ count: 0 }), 500);
     }
@@ -68,7 +65,9 @@ class ContentFile extends React.Component {
 }
 
 ContentFile.propTypes = {
-  info: PropTypes.object.isRequired
+  info: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired
+  // selectFile: PropTypes.func
 };
 
 export default ContentFile;
