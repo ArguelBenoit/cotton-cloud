@@ -19,7 +19,8 @@ export default class extends React.Component {
     this.state = {
       files: [],
       filesSorted: [],
-      sort: 'type'
+      sort: 'type',
+      last: 0
     };
   }
   componentDidMount() {
@@ -39,9 +40,27 @@ export default class extends React.Component {
       console.log(err);
     });
   }
-  selectFile(index) {
-    // maj sur filesSorted;
-    alert(index, ' is selected');
+  selectFile(index, event) {
+    let { filesSorted, last } = this.state;
+    if (event.shiftKey) {
+      if(last < index) {
+        for (let i = last; i <= index; i++) {
+          filesSorted[i].selected = true;
+        }
+      } else {
+        for (let i = last; i >= index; i--) {
+          filesSorted[i].selected = true;
+        }
+      }
+    } else if (event.ctrlKey || event.metaKey) {
+      filesSorted[index].selected = !filesSorted[index].selected;
+      filesSorted[index].selected ? last = index : '';
+    } else {
+      filesSorted.forEach(e => e.selected = false);
+      filesSorted[index].selected = !filesSorted[index].selected;
+      filesSorted[index].selected ? last = index : '';
+    }
+    this.setState({ filesSorted, last });
   }
   sortFiles(type) {
     let { files } = this.state;
@@ -94,7 +113,7 @@ export default class extends React.Component {
         </div>
       </header>
       {filesSorted.map(
-        (f, i) => <ContentFile info={f} index={i} key={i} selectFile={() => this.selectFile()}/>
+        (f, i) => <ContentFile info={f} index={i} key={i} selectFile={(index, option) => this.selectFile(index, option)}/>
       )}
     </div>;
   }

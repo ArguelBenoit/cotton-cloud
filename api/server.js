@@ -1,6 +1,7 @@
 
 const express = require('express');
 const app = express();
+const apiPort = require('./config.json')['apiPort'];
 
 const files = require('./src/routes/files').router;
 const user = require('./src/routes/user').router;
@@ -8,7 +9,7 @@ const disk = require('./src/routes/disk').router;
 
 // ---
 
-app.listen(process.env.PORT || 81);
+app.listen(apiPort);
 
 app.use(express.json());
 app.use(function(req, res, next) {

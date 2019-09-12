@@ -8,11 +8,10 @@ class ContentFile extends React.Component {
     super(props);
     this.clickElement = this.clickElement.bind(this);
     this.state = {
-      clicked: false,
       count: 0
     };
   }
-  clickElement() {
+  clickElement(event) {
     let { count } = this.state;
     let { shortPath, isDirectory, name } = this.props.info;
     if (count === 1) {
@@ -23,10 +22,14 @@ class ContentFile extends React.Component {
       }
     } else {
       let { index, selectFile } = this.props;
-      selectFile(index);
-      this.setState({ clicked: !this.state.clicked });
-      this.setState({ count: count+1 });
-      setTimeout(() => this.setState({ count: 0 }), 500);
+      selectFile(index, event);
+      this.setState({
+        count: count+1
+      });
+      setTimeout(
+        () => this.setState({ count: 0 }),
+        500
+      );
     }
   }
   render() {
@@ -38,13 +41,12 @@ class ContentFile extends React.Component {
       selected,
       name
     } = this.props.info;
-    const { clicked } = this.state;
 
     let className = 'contentFile u-flex-line ';
     isDirectory
       ? className += 'folder '
       : className += 'file ';
-    clicked
+    selected
       ? className += 'clicked '
       : '';
 
@@ -66,8 +68,8 @@ class ContentFile extends React.Component {
 
 ContentFile.propTypes = {
   info: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired
-  // selectFile: PropTypes.func
+  index: PropTypes.number.isRequired,
+  selectFile: PropTypes.func
 };
 
 export default ContentFile;

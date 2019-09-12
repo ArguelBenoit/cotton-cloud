@@ -1,20 +1,20 @@
 const jwt = require('jsonwebtoken');
-const privateKey = 'wekcLmfQO1%opjdJh$&qQahHBvP';
-const user = {
-  id: '187020',
-  name: 'benoit',
-  password: 'arguel'
-};
+const {
+  privateKey,
+  userId,
+  userName,
+  userPassword
+} = require('../../config.json');
 
 
 module.exports = (bodyName, bodyPassword) => {
   return new Promise((resolve, reject) => {
     if (
-      bodyName === user.name &&
-      bodyPassword === user.password &&
-      user.id
+      bodyName === userName &&
+      bodyPassword === userPassword &&
+      userId
     ) {
-      const token = jwt.sign({ id: user.id }, privateKey);
+      const token = jwt.sign({ id: userId }, privateKey);
       resolve(token);
     }
     reject('Error jwt token');

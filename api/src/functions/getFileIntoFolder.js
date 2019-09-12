@@ -1,9 +1,9 @@
 const fs = require('fs-extra');
-const repository = require('../../config.json')['repository'];
+const cloudPath = require('../../config.json')['cloudPath'];
 const parsePath = require('./parsePath');
 
 module.exports = route => {
-  const _route = parsePath(repository, route);
+  const _route = parsePath(cloudPath, route);
   const files = fs.readdirSync(_route, 'utf8');
   let response = [];
   for (let file of files) {

@@ -1,8 +1,7 @@
 import React from 'react';
 import history from 'Utils/history';
 import { destroyJwtCookie } from 'Utils/jwtCookie';
-import { IoMdLogOut } from 'react-icons/io';
-import { MdHome } from 'react-icons/md';
+import { FiLogOut, FiCloud } from 'react-icons/fi';
 import LiSideBar from 'Components/liSideBar';
 import StoreInfo from 'Components/storeInfo';
 import PropTypes from 'prop-types';
@@ -14,12 +13,12 @@ const firstUl = [
   {
     route: null,
     name: 'Logout',
-    icon: <IoMdLogOut />,
+    icon: <FiLogOut />,
     action: () => destroyJwtCookie()
   }, {
     route: '/',
     name: 'Home /',
-    icon: <MdHome />,
+    icon: <FiCloud />,
     action: null
   }
 ];

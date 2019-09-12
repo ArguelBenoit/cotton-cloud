@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getJwtCookie } from 'Utils/jwtCookie';
-const apiUrl = 'http://localhost:81';
+const apiUrl = require('../../config.json')['apiUrl'];
 
 
 export default (type, route, data = {}) => {

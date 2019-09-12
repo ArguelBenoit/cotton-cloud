@@ -1,4 +1,5 @@
 var path = require('path');
+const clientPort = require('./config.json')['clientPort'];
 
 module.exports = {
     entry: './src/app.js',
@@ -23,7 +24,7 @@ module.exports = {
         publicPath: '/dist/',
         // for docker env
         // host: '0.0.0.0',
-        port: 3000,
+        port: clientPort,
         historyApiFallback: true
     },
     module: {
