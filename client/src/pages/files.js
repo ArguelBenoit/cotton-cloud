@@ -4,6 +4,7 @@ import parseQuery from 'Utils/parseQuery';
 import sortAlphaNum from 'Utils/sortAlphaNum';
 import ContentFile from 'Components/contentFile';
 import Path from 'Components/path';
+import Viewer from 'Components/viewer';
 import history from 'Utils/history';
 import { FaSortAlphaDown, FaSortAmountUp } from 'react-icons/fa';
 import { MdMergeType } from 'react-icons/md';
@@ -115,6 +116,7 @@ export default class extends React.Component {
       {filesSorted.map(
         (f, i) => <ContentFile info={f} index={i} key={i} selectFile={(index, option) => this.selectFile(index, option)}/>
       )}
+      <Viewer/>
     </div>;
   }
 }

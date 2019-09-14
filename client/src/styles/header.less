@@ -5,17 +5,22 @@
   z-index: 2;
   transition-duration: 300ms;
   height: 70px;
+  overflow: hidden;
+  min-width: 320px; // iphone 5 5s Se
   h1 {
     color: #fff;
     text-align: center;
-    margin: 11px 0;
-    transition-duration: 300ms;
     font-size: 4rem;
-    a, a:hover { color: inherit; }
-    @media (max-width: 500px) {
+    line-height: 70px;
+    height: 70px;
+    span {
+      vertical-align: middle;
+    }
+    @media (max-width: 550px) {
       text-align: right;
-      margin: 14px 18px;
       font-size: 3.6rem;
+      margin-right: 20px;
+      span { display: none; }
     }
   }
   .button-menu {

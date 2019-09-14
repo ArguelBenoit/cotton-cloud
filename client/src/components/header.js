@@ -3,6 +3,7 @@ import 'Styles/header.less';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import EventEmitter from 'Utils/eventEmitter';
+import { MdCloud } from 'react-icons/md';
 
 let Header = props => {
   const { noMenu } = props;
@@ -17,11 +18,15 @@ let Header = props => {
         <div />
       </div>
     }
-    <h1>
-      <Link to={'/'}>
+    <Link to={'/'}>
+      <h1>
+        <span>
+          <MdCloud />
+        </span>
+        &nbsp;
         CottonCloud
-      </Link>
-    </h1>
+      </h1>
+    </Link>
   </header>;
 };
 
