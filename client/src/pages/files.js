@@ -55,12 +55,11 @@ export default class extends React.Component {
       }
     } else if (event.ctrlKey || event.metaKey) {
       filesSorted[index].selected = !filesSorted[index].selected;
-      filesSorted[index].selected ? last = index : '';
     } else {
       filesSorted.forEach(e => e.selected = false);
       filesSorted[index].selected = !filesSorted[index].selected;
-      filesSorted[index].selected ? last = index : '';
     }
+    filesSorted[index].selected ? last = index : '';
     this.setState({ filesSorted, last });
   }
   sortFiles(type) {
