@@ -1,11 +1,8 @@
 import React from 'react';
-// import history from 'Utils/history';
+import Path from 'Components/path';
 // import PropTypes from 'prop-types';
-// import { destroyJwtCookie } from 'Utils/jwtCookie';
-// import { FaHome, FaSkull } from 'react-icons/fa';
 // import 'Styles/viewer.less';
-// import EventEmitter from 'Utils/eventEmitter';
-
+import { FiArrowLeft } from 'react-icons/fi';
 
 
 class FileViewer extends React.Component {
@@ -22,7 +19,12 @@ class FileViewer extends React.Component {
     // });
   }
   render() {
-    return <div className="viewer" />;
+    return <div className="filePage">
+      <header className="u-flex-line">
+        <Path viewer={true} name={'popo'}/>
+      </header>
+      <div />
+    </div>;
   }
 }
 

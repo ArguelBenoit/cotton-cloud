@@ -16,7 +16,7 @@ import {
   FaFolder
 } from 'react-icons/fa';
 
-class ContentFile extends React.Component {
+class FileListContent extends React.Component {
   constructor(props) {
     super(props);
     this.clickElement = this.clickElement.bind(this);
@@ -82,11 +82,11 @@ class ContentFile extends React.Component {
   }
 }
 
-ContentFile.propTypes = {
+FileListContent.propTypes = {
   info: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   selectFile: PropTypes.func,
   viewFile: PropTypes.func
 };
 
-export default ContentFile;
+export default FileListContent;

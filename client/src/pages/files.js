@@ -2,8 +2,8 @@ import React from 'react';
 import request from 'Utils/request';
 import parseQuery from 'Utils/parseQuery';
 import sortAlphaNum from 'Utils/sortAlphaNum';
-import ContentFile from 'Components/contentFile';
 import Path from 'Components/path';
+import FileList from 'Components/fileList';
 import FileViewer from 'Components/fileViewer';
 import history from 'Utils/history';
 import { FaSortAlphaDown, FaSortAmountUp } from 'react-icons/fa';
@@ -114,31 +114,16 @@ export default class extends React.Component {
   render() {
     const { filesSorted, sort, viewerActive } = this.state;
     if (viewerActive) {
-      return <div className="filePage">
-        <header className="u-flex-line">
-          <Path />
-          <div className="u-flex-line sorting">
-            <MdMergeType className={sort === 'type' ? 'active' : ''} onClick={() => this.sortFiles('type')} />
-            <FaSortAlphaDown className={sort === 'alpha' ? 'active' : ''} onClick={() => this.sortFiles('alpha')} />
-            <FaSortAmountUp className={sort === 'amount' ? 'active' : ''} onClick={() => this.sortFiles('amount')} />
-          </div>
-        </header>
-        <FileViewer />
-      </div>;
+      return <FileViewer />;
     } else {
-      return <div className="filePage">
-        <header className="u-flex-line">
-          <Path />
-          <div className="u-flex-line sorting">
-            <MdMergeType className={sort === 'type' ? 'active' : ''} onClick={() => this.sortFiles('type')} />
-            <FaSortAlphaDown className={sort === 'alpha' ? 'active' : ''} onClick={() => this.sortFiles('alpha')} />
-            <FaSortAmountUp className={sort === 'amount' ? 'active' : ''} onClick={() => this.sortFiles('amount')} />
-          </div>
-        </header>
-        {filesSorted.map(
-          (f, i) => <ContentFile info={f} index={i} key={i} viewFile={(active, path, name) => this.viewFile(active, path, name)} selectFile={(index, option) => this.selectFile(index, option)}/>
-        )}
-      </div>;
+      const fileListProps = {
+        filesSorted,
+        sort,
+        sortFiles: type => this.sortFiles(type),
+        selectFile: (index, option) => this.selectFile(index, option),
+        viewFile: (active, path, name) => this.viewFile(active, path, name)
+      };
+      return <FileList {...fileListProps} />;
     }
   }
 }

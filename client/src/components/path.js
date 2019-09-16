@@ -1,7 +1,9 @@
 import React from 'react';
 import parseQuery from 'Utils/parseQuery';
 import { FaFolderOpen } from 'react-icons/fa';
+import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 let createPathArray = () => {
@@ -18,7 +20,6 @@ let createPathArray = () => {
   return path;
 };
 
-
 let createPath = (array, index) => {
   let str = '/?path=/';
   for(let i = 0; i <= index; i++) {
@@ -27,10 +28,24 @@ let createPath = (array, index) => {
   return str;
 };
 
-
-let Path = () => {
+let Path = props => {
   let path = createPathArray();
-  return <div className="u-flex-line path">
+  if (props.viewer) {
+    return <div className={'u-flex-line path' + ''}>
+        <FiArrowLeft />
+        {props.name}
+        &nbsp;&nbsp;
+        in
+        &nbsp;&nbsp;
+        <span>Home&nbsp;/</span>
+        {path.map(
+          (p, i) => {
+            return <span key={i}>{p}&nbsp;/</span>;
+          }
+        )}
+    </div>;
+  }
+  return <div className={'u-flex-line path' + ''}>
     <FaFolderOpen className="first-icon" />
     <Link to={'/'}>
       <span>Home&nbsp;/</span>
@@ -43,6 +58,11 @@ let Path = () => {
       }
     )}
   </div>;
+};
+
+Path.propTypes = {
+  viewer: PropTypes.bool,
+  name: PropTypes.string
 };
 
 export default Path;
