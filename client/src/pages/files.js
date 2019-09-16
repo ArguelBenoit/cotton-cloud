@@ -4,7 +4,7 @@ import parseQuery from 'Utils/parseQuery';
 import sortAlphaNum from 'Utils/sortAlphaNum';
 import ContentFile from 'Components/contentFile';
 import Path from 'Components/path';
-import Viewer from 'Components/viewer';
+import FileViewer from 'Components/fileViewer';
 import history from 'Utils/history';
 import { FaSortAlphaDown, FaSortAmountUp } from 'react-icons/fa';
 import { MdMergeType } from 'react-icons/md';
@@ -21,7 +21,10 @@ export default class extends React.Component {
       files: [],
       filesSorted: [],
       sort: 'type',
-      last: 0
+      last: 0,
+      viewerActive: false,
+      viewerPath: null,
+      viewerName: null
     };
   }
   componentDidMount() {
@@ -61,6 +64,13 @@ export default class extends React.Component {
     }
     filesSorted[index].selected ? last = index : '';
     this.setState({ filesSorted, last });
+  }
+  viewFile(active, path, name) {
+    this.setState({
+      viewerActive: active,
+      viewerPath: path,
+      viewerName: name
+    });
   }
   sortFiles(type) {
     let { files } = this.state;
@@ -102,20 +112,33 @@ export default class extends React.Component {
     this.setState({ filesSorted: sorted, sort });
   }
   render() {
-    const { filesSorted, sort } = this.state;
-    return <div className="filePage">
-      <header className="u-flex-line">
-        <Path />
-        <div className="u-flex-line sorting">
-          <MdMergeType className={sort === 'type' ? 'active' : ''} onClick={() => this.sortFiles('type')} />
-          <FaSortAlphaDown className={sort === 'alpha' ? 'active' : ''} onClick={() => this.sortFiles('alpha')} />
-          <FaSortAmountUp className={sort === 'amount' ? 'active' : ''} onClick={() => this.sortFiles('amount')} />
-        </div>
-      </header>
-      {filesSorted.map(
-        (f, i) => <ContentFile info={f} index={i} key={i} selectFile={(index, option) => this.selectFile(index, option)}/>
-      )}
-      <Viewer/>
-    </div>;
+    const { filesSorted, sort, viewerActive } = this.state;
+    if (viewerActive) {
+      return <div className="filePage">
+        <header className="u-flex-line">
+          <Path />
+          <div className="u-flex-line sorting">
+            <MdMergeType className={sort === 'type' ? 'active' : ''} onClick={() => this.sortFiles('type')} />
+            <FaSortAlphaDown className={sort === 'alpha' ? 'active' : ''} onClick={() => this.sortFiles('alpha')} />
+            <FaSortAmountUp className={sort === 'amount' ? 'active' : ''} onClick={() => this.sortFiles('amount')} />
+          </div>
+        </header>
+        <FileViewer />
+      </div>;
+    } else {
+      return <div className="filePage">
+        <header className="u-flex-line">
+          <Path />
+          <div className="u-flex-line sorting">
+            <MdMergeType className={sort === 'type' ? 'active' : ''} onClick={() => this.sortFiles('type')} />
+            <FaSortAlphaDown className={sort === 'alpha' ? 'active' : ''} onClick={() => this.sortFiles('alpha')} />
+            <FaSortAmountUp className={sort === 'amount' ? 'active' : ''} onClick={() => this.sortFiles('amount')} />
+          </div>
+        </header>
+        {filesSorted.map(
+          (f, i) => <ContentFile info={f} index={i} key={i} viewFile={(active, path, name) => this.viewFile(active, path, name)} selectFile={(index, option) => this.selectFile(index, option)}/>
+        )}
+      </div>;
+    }
   }
 }

@@ -1,14 +1,14 @@
 import React from 'react';
-import history from 'Utils/history';
+// import history from 'Utils/history';
 // import PropTypes from 'prop-types';
 // import { destroyJwtCookie } from 'Utils/jwtCookie';
 // import { FaHome, FaSkull } from 'react-icons/fa';
 // import 'Styles/viewer.less';
-import EventEmitter from 'Utils/eventEmitter';
+// import EventEmitter from 'Utils/eventEmitter';
 
 
 
-class Viewer extends React.Component {
+class FileViewer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,4 +30,4 @@ class Viewer extends React.Component {
 //   active: PropTypes.bool
 // };
 
-export default Viewer;
+export default FileViewer;

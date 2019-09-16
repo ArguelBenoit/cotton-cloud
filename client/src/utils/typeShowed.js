@@ -5,16 +5,14 @@ const types = {
     'tar',
     'gz',
     'tgz',
-    'zip',
-    'rar'
+    'zip'
   ],
-  audio: [],
-  code: [],
+  audio: ['mp3, ogg'],
+  code: [''],
   csv: [],
   pdf: ['pdf'],
   image: [],
-  video: [],
-  folder: []
+  video: ['mp4', 'webm', 'ogg']
 };
 
 export default endFile => {
