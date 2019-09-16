@@ -58,7 +58,7 @@ class FileListContent extends React.Component {
       name
     } = this.props.info;
 
-    let className = 'contentFile u-flex-line ';
+    let className = 'fileListContent u-flex-line ';
     isDirectory
       ? className += 'folder '
       : className += 'file ';

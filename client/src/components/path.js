@@ -37,10 +37,10 @@ let Path = props => {
         &nbsp;&nbsp;
         in
         &nbsp;&nbsp;
-        <span>Home&nbsp;/</span>
+        <span>/</span>
         {path.map(
           (p, i) => {
-            return <span key={i}>{p}&nbsp;/</span>;
+            return <span key={i}>&nbsp;{p}&nbsp;/</span>;
           }
         )}
     </div>;
@@ -48,7 +48,7 @@ let Path = props => {
   return <div className={'u-flex-line path' + ''}>
     <FaFolderOpen className="first-icon" />
     <Link to={'/'}>
-      <span>Home&nbsp;/</span>
+      <span>/</span>
     </Link>
     {path.map(
       (p, i) => {

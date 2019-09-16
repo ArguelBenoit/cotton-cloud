@@ -2,12 +2,9 @@ import React from 'react';
 import request from 'Utils/request';
 import parseQuery from 'Utils/parseQuery';
 import sortAlphaNum from 'Utils/sortAlphaNum';
-import Path from 'Components/path';
 import FileList from 'Components/fileList';
 import FileViewer from 'Components/fileViewer';
 import history from 'Utils/history';
-import { FaSortAlphaDown, FaSortAmountUp } from 'react-icons/fa';
-import { MdMergeType } from 'react-icons/md';
 import 'Styles/files.less';
 
 
