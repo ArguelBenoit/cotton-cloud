@@ -5,6 +5,7 @@ import 'Styles/main.less';
 import history from 'Utils/history';
 import Header from 'Components/header';
 import SideBar from 'Components/sideBar';
+import Viewer from 'Components/viewer';
 import Login from 'Pages/login';
 import Files from 'Pages/files';
 import Error from 'Pages/error';
@@ -31,7 +32,8 @@ class App extends React.Component {
         <div>
           <Header />
           <SideBar />
-          <div className="container" style={{paddingTop: '100px'}}>
+          <Viewer />
+          <div className="container" style={{paddingTop: '100px', paddingBottom: '30px'}}>
             <Switch>
               <Route path="/" exact component={Files} />
               <Route component={Error} />
