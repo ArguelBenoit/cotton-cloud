@@ -9,9 +9,9 @@
     width: 100%;
     a {
       color: inherit;
-      padding: 0 2px;
+      padding: 0 5px;
       border-radius: 2px;
-      &:hover { background: #eee; }
+      &:hover { background: #333; }
     }
     svg {
       width: 34px;
@@ -24,13 +24,13 @@
     svg {
       border-radius: 2px;
       margin-left: 8px;
-      background: #eee;
+      background: #333;
       padding: 5px;
       width: 15px;
       height: 15px;
       cursor: pointer;
       &.active {
-        background: #c2c2cd;
+        background: #008ac4;
       }
     }
   }
@@ -38,20 +38,18 @@
   .fileListContent {
     height: 60px;
     width: 100%;
-    color: #444;
-    background: #eee;
+    box-sizing: border-box;
     border-radius: 2px;
     margin-bottom: 12px;
+    background: #222;
     &.clicked {
-      background: #c2c2cd;
-      // box-shadow: 2px 2px 4px #d2d2d2;
+      background: #008ac4;
     }
     cursor: pointer;
     svg { margin: 0 12px; }
     .name { width: 100%; }
     .size {
       margin-right: 12px;
-      opacity: 0.7;
     }
     &.folder {
       height: 60px;
@@ -62,7 +60,6 @@
     }
     &.file {
       height: 40px;
-      opacity: 0.85;
     }
   }
 

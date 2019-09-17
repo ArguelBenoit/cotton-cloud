@@ -34,11 +34,7 @@ let Path = props => {
   if (props.viewer) {
     return <div className={'u-flex-line path' + ''}>
         <FiArrowLeft onClick={() => EventEmitter.dispatch('viewFile', {active: false, index: null})} />
-        {props.name}
-        &nbsp;&nbsp;
-        in
-        &nbsp;&nbsp;
-        <span>/</span>
+        {props.name}&nbsp;in&nbsp;/
         {path.map(
           (p, i) => {
             return <span key={i}>&nbsp;{p}&nbsp;/</span>;
@@ -53,9 +49,12 @@ let Path = props => {
     </Link>
     {path.map(
       (p, i) => {
-        return <Link to={createPath(path, i)} key={i}>
-          <span>{p}&nbsp;/</span>
-        </Link>;
+        return <span>
+          <Link to={createPath(path, i)} key={i}>
+            <span>{p}</span>
+          </Link>
+          &nbsp;/&nbsp;
+        </span>;
       }
     )}
   </div>;

@@ -4,11 +4,11 @@ let StoreInfo = () => {
   let style = {
     width: '16px',
     height: '16px',
-    borderRadius: '5px'
+    borderRadius: '2px'
   };
   return <div className="storeInfo">
     <div className="u-flex-line">
-      <div className="u-margin-right-five" style={{...style, background: '#ccc'}}/>
+      <div className="u-margin-right-five" style={{...style, background: '#444'}}/>
       <div>Available: {'983go'}</div>
     </div>
     <div className="u-flex-line">
@@ -20,7 +20,7 @@ let StoreInfo = () => {
       <div>Something else: {'15go'}</div>
     </div>
     <div className="u-flex-line u-margin-top-five">
-      <div className="container-bar u-margin-right-five" style={{background: '#ccc'}}>
+      <div className="container-bar u-margin-right-five" style={{background: '#444'}}>
         <div style={{width: '40%'}}/>
         <div style={{width: '15%'}}/>
       </div>

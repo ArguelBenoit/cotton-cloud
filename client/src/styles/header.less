@@ -1,5 +1,6 @@
 .mainHeader {
-  background: #0d122a;
+  background: #111;
+  border-bottom: 1px solid #444;
   position: fixed;
   width: 100%;
   z-index: 2;
@@ -8,7 +9,7 @@
   overflow: hidden;
   min-width: 320px; // iphone 5 5s Se
   h1 {
-    color: #fff;
+    color: #ddd;
     text-align: center;
     font-size: 4rem;
     line-height: 70px;
@@ -29,7 +30,7 @@
     width: 50px;
     height: 50px;
     position: absolute;
-    background: #000;
+    background: #222;
     border-radius: 42%;
     top: 10px;
     left: 10px;
@@ -46,6 +47,7 @@
     div:first-child { transform: translateY(-8px); }
     div:last-child { transform: translateY(8px); }
     &:active {
+      background: #333;
       div:first-child { transform: translateY(-10px); }
       div:last-child { transform: translateY(10px); }
     }
