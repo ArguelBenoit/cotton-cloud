@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import history from 'Utils/history';
+import EventEmitter from 'Utils/eventEmitter';
 import {
   FaFile,
   /*
@@ -26,17 +27,16 @@ class FileListContent extends React.Component {
   }
   clickElement(event) {
     let { count } = this.state;
-    let { shortPath, isDirectory, name } = this.props.info;
+    let { shortPath, isDirectory } = this.props.info;
     if (count === 1) {
-      let { viewFile } = this.props;
       if (isDirectory) {
         history.push('/?path=' + shortPath + '/');
       } else {
-        viewFile(true, shortPath, name);
+        EventEmitter.dispatch('viewFile', {active: true, index: this.props.index});
       }
     } else {
-      let { index, selectFile } = this.props;
-      selectFile(index, event);
+      let { index } = this.props;
+      EventEmitter.dispatch('selectFile', {index, option: event});
       this.setState({
         count: count+1
       });
@@ -84,9 +84,7 @@ class FileListContent extends React.Component {
 
 FileListContent.propTypes = {
   info: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-  selectFile: PropTypes.func,
-  viewFile: PropTypes.func
+  index: PropTypes.number.isRequired
 };
 
 export default FileListContent;

@@ -4,16 +4,17 @@ import FileListContent from 'Components/fileListContent';
 import Path from 'Components/path';
 import { FaSortAlphaDown, FaSortAmountUp } from 'react-icons/fa';
 import { MdMergeType } from 'react-icons/md';
+import EventEmitter from 'Utils/eventEmitter';
 
 let FileList = props => {
-  const { filesSorted, sort, sortFiles, selectFile, viewFile } = props;
+  const { filesSorted, sort } = props;
   return <div className="filePage">
     <header className="u-flex-line">
       <Path />
       <div className="u-flex-line sorting">
-        <MdMergeType className={sort === 'type' ? 'active' : ''} onClick={() => sortFiles('type')} />
-        <FaSortAlphaDown className={sort === 'alpha' ? 'active' : ''} onClick={() => sortFiles('alpha')} />
-        <FaSortAmountUp className={sort === 'amount' ? 'active' : ''} onClick={() => sortFiles('amount')} />
+        <MdMergeType className={sort === 'type' ? 'active' : ''} onClick={() => EventEmitter.dispatch('sortFile', 'type')} />
+        <FaSortAlphaDown className={sort === 'alpha' ? 'active' : ''} onClick={() => EventEmitter.dispatch('sortFile', 'alpha')} />
+        <FaSortAmountUp className={sort === 'amount' ? 'active' : ''} onClick={() => EventEmitter.dispatch('sortFile', 'amount')} />
       </div>
     </header>
     {filesSorted.map(
@@ -22,8 +23,6 @@ let FileList = props => {
           info={f}
           index={i}
           key={i}
-          viewFile={(active, path, name) => viewFile(active, path, name)}
-          selectFile={(index, option) => selectFile(index, option)}
         />;
       }
     )}
@@ -32,10 +31,7 @@ let FileList = props => {
 
 FileList.propTypes = {
   filesSorted: PropTypes.array,
-  sort: PropTypes.string,
-  sortFiles: PropTypes.func,
-  selectFile: PropTypes.func,
-  viewFile: PropTypes.func
+  sort: PropTypes.string
 };
 
 export default FileList;

@@ -4,6 +4,7 @@ import { FaFolderOpen } from 'react-icons/fa';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import EventEmitter from 'Utils/eventEmitter';
 
 
 let createPathArray = () => {
@@ -32,7 +33,7 @@ let Path = props => {
   let path = createPathArray();
   if (props.viewer) {
     return <div className={'u-flex-line path' + ''}>
-        <FiArrowLeft />
+        <FiArrowLeft onClick={() => EventEmitter.dispatch('viewFile', {active: false, index: null})} />
         {props.name}
         &nbsp;&nbsp;
         in

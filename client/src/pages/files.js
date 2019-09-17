@@ -6,6 +6,7 @@ import FileList from 'Components/fileList';
 import FileViewer from 'Components/fileViewer';
 import history from 'Utils/history';
 import 'Styles/files.less';
+import EventEmitter from 'Utils/eventEmitter';
 
 
 export default class extends React.Component {
@@ -20,8 +21,7 @@ export default class extends React.Component {
       sort: 'type',
       last: 0,
       viewerActive: false,
-      viewerPath: null,
-      viewerName: null
+      viewerIndex: null
     };
   }
   componentDidMount() {
@@ -30,6 +30,15 @@ export default class extends React.Component {
     history.listen( loc =>  {
       let path = parseQuery(loc.search).path || '';
       this.requestFiles(path);
+    });
+    EventEmitter.subscribe('sortFile', type => {
+      this.sortFiles(type);
+    });
+    EventEmitter.subscribe('selectFile', obj => {
+      this.selectFile(obj.index, obj.option);
+    });
+    EventEmitter.subscribe('viewFile', obj => {
+      this.viewFile(obj.active, obj.index);
     });
   }
   requestFiles(path) {
@@ -62,11 +71,10 @@ export default class extends React.Component {
     filesSorted[index].selected ? last = index : '';
     this.setState({ filesSorted, last });
   }
-  viewFile(active, path, name) {
+  viewFile(active, index) {
     this.setState({
       viewerActive: active,
-      viewerPath: path,
-      viewerName: name
+      viewerIndex: index
     });
   }
   sortFiles(type) {
@@ -115,10 +123,7 @@ export default class extends React.Component {
     } else {
       const fileListProps = {
         filesSorted,
-        sort,
-        sortFiles: type => this.sortFiles(type),
-        selectFile: (index, option) => this.selectFile(index, option),
-        viewFile: (active, path, name) => this.viewFile(active, path, name)
+        sort
       };
       return <FileList {...fileListProps} />;
     }
