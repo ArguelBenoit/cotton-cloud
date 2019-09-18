@@ -8,15 +8,15 @@ let StoreInfo = () => {
   };
   return <div className="storeInfo">
     <div className="u-flex-line">
-      <div className="u-margin-right-five" style={{...style, background: '#444'}}/>
+      <div className="u-margin-right-teen" style={{...style, background: '#444'}}/>
       <div>Available: {'983go'}</div>
     </div>
     <div className="u-flex-line">
-      <div className="u-margin-right-five" style={{...style, background: '#32998a'}}/>
+      <div className="u-margin-right-teen" style={{...style, background: '#32998a'}}/>
       <div>Your cloud: {'2go'}</div>
     </div>
     <div className="u-flex-line">
-      <div className="u-margin-right-five" style={{...style, background: '#f90'}}/>
+      <div className="u-margin-right-teen" style={{...style, background: '#f90'}}/>
       <div>Something else: {'15go'}</div>
     </div>
     <div className="u-flex-line u-margin-top-five">

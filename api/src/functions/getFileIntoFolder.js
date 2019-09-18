@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const cloudPath = require('../../config.json')['cloudPath'];
 const parsePath = require('./parsePath');
+const checkType = require('./checkType');
 
 module.exports = route => {
   const _route = parsePath(cloudPath, route);
@@ -18,6 +19,7 @@ module.exports = route => {
       type: !fileState.isDirectory() ? file.split('.').pop() : 'directory',
       selected: false
     });
+    console.log(checkType(file));
   }
   return response;
 };

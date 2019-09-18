@@ -65,8 +65,12 @@ export default class extends React.Component {
     } else if (event.ctrlKey || event.metaKey) {
       filesSorted[index].selected = !filesSorted[index].selected;
     } else {
-      filesSorted.forEach(e => e.selected = false);
-      filesSorted[index].selected = !filesSorted[index].selected;
+      filesSorted.forEach((e, i) => {
+        if(i === index)
+          filesSorted[index].selected = !filesSorted[index].selected;
+        else
+          e.selected = false;
+      });
     }
     filesSorted[index].selected ? last = index : '';
     this.setState({ filesSorted, last });
