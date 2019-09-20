@@ -16,10 +16,9 @@ module.exports = route => {
       shortPath: (route + file),
       size: fileState.size,
       isDirectory: fileState.isDirectory(),
-      type: !fileState.isDirectory() ? file.split('.').pop() : 'directory',
+      type: !fileState.isDirectory() ? checkType(file) : 'directory',
       selected: false
     });
-    console.log(checkType(file));
   }
   return response;
 };
