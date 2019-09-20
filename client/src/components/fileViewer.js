@@ -1,9 +1,6 @@
 import React from 'react';
-import Path from 'Components/path';
-// import PropTypes from 'prop-types';
-// import 'Styles/viewer.less';
-import { FiArrowLeft } from 'react-icons/fi';
-
+import EventEmitter from 'Utils/eventEmitter';
+import { FaArrowCircleLeft } from 'react-icons/fa';
 
 class FileViewer extends React.Component {
   constructor(props) {
@@ -21,7 +18,10 @@ class FileViewer extends React.Component {
   render() {
     return <div className="filePage">
       <header className="u-flex-line">
-        <Path viewer={true} name={'popo'}/>
+        <div className={'u-flex-line path' + ''}>
+          <FaArrowCircleLeft onClick={() => EventEmitter.dispatch('viewFile', {active: false, index: null})} />
+          {this.props.name}
+        </div>
       </header>
       <div />
     </div>;

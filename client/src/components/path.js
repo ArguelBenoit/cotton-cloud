@@ -1,10 +1,7 @@
 import React from 'react';
 import parseQuery from 'Utils/parseQuery';
 import { FaFolderOpen } from 'react-icons/fa';
-import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import EventEmitter from 'Utils/eventEmitter';
 
 
 let createPathArray = () => {
@@ -29,19 +26,8 @@ let createPath = (array, index) => {
   return str;
 };
 
-let Path = props => {
+let Path = () => {
   let path = createPathArray();
-  if (props.viewer) {
-    return <div className={'u-flex-line path' + ''}>
-        <FiArrowLeft onClick={() => EventEmitter.dispatch('viewFile', {active: false, index: null})} />
-        {props.name}&nbsp;in&nbsp;/
-        {path.map(
-          (p, i) => {
-            return <span key={i}>&nbsp;{p}&nbsp;/</span>;
-          }
-        )}
-    </div>;
-  }
   return <div className={'u-flex-line path' + ''}>
     <FaFolderOpen className="first-icon" />
     <Link to={'/'}>
@@ -49,8 +35,8 @@ let Path = props => {
     </Link>
     {path.map(
       (p, i) => {
-        return <span>
-          <Link to={createPath(path, i)} key={i}>
+        return <span key={'pathSpan-' + i}>
+          <Link to={createPath(path, i)}>
             <span>{p}</span>
           </Link>
           &nbsp;/&nbsp;
@@ -58,11 +44,6 @@ let Path = props => {
       }
     )}
   </div>;
-};
-
-Path.propTypes = {
-  viewer: PropTypes.bool,
-  name: PropTypes.string
 };
 
 export default Path;

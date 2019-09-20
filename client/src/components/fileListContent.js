@@ -4,35 +4,34 @@ import history from 'Utils/history';
 import EventEmitter from 'Utils/eventEmitter';
 import {
   FaFile,
-  /*
+  FaFolder,
   FaFileAlt,
   FaFileArchive,
   FaFileAudio,
   FaFileCode,
-  FaFileCsv,
   FaFilePdf,
   FaFileImage,
   FaFileVideo,
-  */
-  FaFolder
+  FaFileInvoice
 } from 'react-icons/fa';
 
 class FileListContent extends React.Component {
   constructor(props) {
     super(props);
     this.clickElement = this.clickElement.bind(this);
+    this.getIcon = this.getIcon.bind(this);
     this.state = {
       count: 0
     };
   }
   clickElement(event) {
     let { count } = this.state;
-    let { shortPath, isDirectory } = this.props.info;
+    let { shortPath, isDirectory, name } = this.props.info;
     if (count === 1) {
       if (isDirectory) {
         history.push('/?path=' + shortPath + '/');
       } else {
-        EventEmitter.dispatch('viewFile', {active: true, index: this.props.index});
+        EventEmitter.dispatch('viewFile', {active: true, name});
       }
     } else {
       let { index } = this.props;
@@ -46,16 +45,43 @@ class FileListContent extends React.Component {
       );
     }
   }
+  getIcon(type) {
+    var icon;
+    switch (type) {
+      case 'image':
+        return <FaFileImage />;
+      case 'video':
+        return <FaFileVideo />;
+      case 'audio':
+        return <FaFileAudio />;
+      case 'text':
+        return <FaFileAlt />;
+      case 'code':
+        return <FaFileCode />;
+      case 'pdf':
+        return <FaFilePdf />;
+      case 'archive':
+        return <FaFileArchive />;
+      case 'sheet':
+        return <FaFileInvoice />;
+      case 'directory':
+        return <FaFolder />;
+      default:
+        icon = <FaFile />;
+      return icon;
+    }
+  }
   render() {
     const {
       isDirectory,
       size,
+      selected,
+      name,
+      type
       /*
       path,
       shortPath,
       */
-      selected,
-      name
     } = this.props.info;
 
     let className = 'fileListContent u-flex-line ';
@@ -66,19 +92,11 @@ class FileListContent extends React.Component {
       ? className += 'clicked '
       : '';
 
-    if (isDirectory) {
-      return <div draggable className={className} onClick={this.clickElement}>
-        <FaFolder />
-        <span className="name">{name}</span>
-        <span className="size">{size}&#8239;mo</span>
-      </div>;
-    } else {
-      return <div draggable className={className} onClick={this.clickElement}>
-        <FaFile />
-        <span className="name">{name}</span>
-        <span className="size">{size}&#8239;mo</span>
-      </div>;
-    }
+    return <div draggable className={className} onClick={this.clickElement}>
+      {this.getIcon(type)}
+      <span className="name">{name}</span>
+      <span className="size">{size}&#8239;mo</span>
+    </div>;
   }
 }
 

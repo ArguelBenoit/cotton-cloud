@@ -21,7 +21,7 @@ export default class extends React.Component {
       sort: 'type',
       last: 0,
       viewerActive: false,
-      viewerIndex: null
+      viewerName: null
     };
   }
   componentDidMount() {
@@ -38,7 +38,7 @@ export default class extends React.Component {
       this.selectFile(obj.index, obj.option);
     });
     EventEmitter.subscribe('viewFile', obj => {
-      this.viewFile(obj.active, obj.index);
+      this.viewFile(obj.active, obj.name);
     });
   }
   requestFiles(path) {
@@ -75,10 +75,10 @@ export default class extends React.Component {
     filesSorted[index].selected ? last = index : '';
     this.setState({ filesSorted, last });
   }
-  viewFile(active, index) {
+  viewFile(active, name) {
     this.setState({
       viewerActive: active,
-      viewerIndex: index
+      viewerName: name
     });
   }
   sortFiles(type) {
@@ -91,24 +91,24 @@ export default class extends React.Component {
       sorted = [];
       sort = 'type';
       files.forEach(e => {
-        if (diffType[e.type]) diffType[e.type].push(e);
-        else diffType[e.type] = [e];
+        if (diffType[e.type])
+          diffType[e.type].push(e);
+        else
+          diffType[e.type] = [e];
       });
-      Object
-        .keys(diffType)
-        .sort((a, b) => sortAlphaNum(a, b))
-        .sort(a => a === 'directory' ? -10000 : 0)
-        .forEach( e => {
-          diffType[e]
-            .sort((a, b) => sortAlphaNum(a.name, b.name))
-            .forEach(el => sorted.push(el));
-        });
+      if(diffType.directory) {
+        sorted.push(...diffType.directory);
+      }
+      Object.keys(diffType).forEach(type => {
+        if(type !== 'directory')
+          sorted.push(...diffType[type]);
+      });
 
     } else if (type === 'alpha') {
       sort = 'alpha';
       sorted = files.sort((a, b) => sortAlphaNum(a.name, b.name));
 
-    } else { // 'amount'
+    } else {
       sort = 'amount';
       sorted = files.sort((a, b) => {
         if (a.size < b.size) {
@@ -121,9 +121,9 @@ export default class extends React.Component {
     this.setState({ filesSorted: sorted, sort });
   }
   render() {
-    const { filesSorted, sort, viewerActive } = this.state;
+    const { filesSorted, sort, viewerActive, viewerName } = this.state;
     if (viewerActive) {
-      return <FileViewer />;
+      return <FileViewer name={viewerName} />;
     } else {
       const fileListProps = {
         filesSorted,

@@ -8,12 +8,23 @@ import SideBar from 'Components/sideBar';
 import Login from 'Pages/login';
 import Files from 'Pages/files';
 import Error from 'Pages/error';
-
+import EventEmitter from 'Utils/eventEmitter';
 import { getJwtCookie } from 'Utils/jwtCookie';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
+    this.state = {
+      menuActive: false
+    };
+  }
+  componentDidMount() {
+    EventEmitter.subscribe('toggleMenu', () => {
+      this.setState({ menuActive: !this.state.menuActive });
+    });
+    history.listen(() =>  {
+      EventEmitter.dispatch('viewFile', {active: false});
+    });
   }
   render() {
     return <Router history={history}>
@@ -31,7 +42,14 @@ class App extends React.Component {
         <div>
           <Header />
           <SideBar />
-          <div className="container" style={{paddingTop: '100px', paddingBottom: '30px'}}>
+          <div
+            className="container"
+            style={{
+              paddingTop: '100px',
+              paddingBottom: '30px',
+              paddingLeft: this.state.menuActive && window.innerWidth > 900 ? '240px' : ''
+            }}
+          >
             <Switch>
               <Route path="/" exact component={Files} />
               <Route component={Error} />
