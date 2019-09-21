@@ -1,10 +1,8 @@
 
 .filePage {
-
   header {
     margin-bottom: 20px;
   }
-
   .path {
     width: 100%;
     a {
@@ -19,7 +17,6 @@
       margin-right: 12px;
     }
   }
-
   .option {
     padding-right: 10px;
     border-right: 1px solid #333;
@@ -39,7 +36,6 @@
       }
     }
   }
-
   .sorting {
     svg {
       border-radius: 2px;
@@ -57,7 +53,6 @@
       }
     }
   }
-
   .fileListContent {
     height: 60px;
     width: 100%;
@@ -95,5 +90,34 @@
       }
     }
   }
-
+  .fileViewer {
+    .navIcon {
+      cursor: pointer;
+      background: #333;
+      border-radius: 50%;
+      padding: 8px;
+      width: 24px;
+      height: 24px;
+      &:hover {
+        background: #444;
+      }
+    }
+    .iconFile {
+      margin: 0 10px;
+      width: 25px;
+      height: 25px;
+    }
+    .containerViewer {
+      border: 1px solid #444;
+      display: flex;
+      align-items: center;
+      min-height: 200px;
+      border-radius: 2px;
+      .center {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+    }
+  }
 }

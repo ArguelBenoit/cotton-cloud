@@ -21,7 +21,7 @@ export default class extends React.Component {
       sort: 'type',
       last: 0,
       viewerActive: false,
-      viewerName: null
+      viewerIndex: null
     };
   }
   componentDidMount() {
@@ -37,8 +37,8 @@ export default class extends React.Component {
     EventEmitter.subscribe('selectFile', obj => {
       this.selectFile(obj.index, obj.option);
     });
-    EventEmitter.subscribe('viewFile', obj => {
-      this.viewFile(obj.active, obj.name);
+    EventEmitter.subscribe('viewFile', data => {
+      this.viewFile(data.active, data.index);
     });
   }
   requestFiles(path) {
@@ -75,10 +75,10 @@ export default class extends React.Component {
     filesSorted[index].selected ? last = index : '';
     this.setState({ filesSorted, last });
   }
-  viewFile(active, name) {
+  viewFile(active, index) {
     this.setState({
       viewerActive: active,
-      viewerName: name
+      viewerIndex: index
     });
   }
   sortFiles(type) {
@@ -121,15 +121,19 @@ export default class extends React.Component {
     this.setState({ filesSorted: sorted, sort });
   }
   render() {
-    const { filesSorted, sort, viewerActive, viewerName } = this.state;
+    const { filesSorted, sort, viewerActive, viewerIndex } = this.state;
     if (viewerActive) {
-      return <FileViewer name={viewerName} />;
+      return <div className="filePage">
+        <FileViewer files={filesSorted} index={viewerIndex} />
+      </div>;
     } else {
       const fileListProps = {
         filesSorted,
         sort
       };
-      return <FileList {...fileListProps} />;
+      return <div className="filePage">
+        <FileList {...fileListProps} />
+      </div>;
     }
   }
 }

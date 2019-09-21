@@ -10,7 +10,7 @@ import EventEmitter from 'Utils/eventEmitter';
 
 let FileList = props => {
   const { filesSorted, sort } = props;
-  return <div className="filePage">
+  return <div>
     <header className="u-flex-line">
       <Path />
       <div className="u-flex-line option">

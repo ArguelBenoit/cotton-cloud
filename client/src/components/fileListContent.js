@@ -2,36 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import history from 'Utils/history';
 import EventEmitter from 'Utils/eventEmitter';
-import {
-  FaFile,
-  FaFolder,
-  FaFileAlt,
-  FaFileArchive,
-  FaFileAudio,
-  FaFileCode,
-  FaFilePdf,
-  FaFileImage,
-  FaFileVideo,
-  FaFileInvoice
-} from 'react-icons/fa';
+import IconFile from 'Components/iconFile';
 
 class FileListContent extends React.Component {
   constructor(props) {
     super(props);
     this.clickElement = this.clickElement.bind(this);
-    this.getIcon = this.getIcon.bind(this);
     this.state = {
       count: 0
     };
   }
   clickElement(event) {
     let { count } = this.state;
-    let { shortPath, isDirectory, name } = this.props.info;
+    const { index } =this.props;
+    let { shortPath, isDirectory } = this.props.info;
     if (count === 1) {
       if (isDirectory) {
         history.push('/?path=' + shortPath + '/');
       } else {
-        EventEmitter.dispatch('viewFile', {active: true, name});
+        EventEmitter.dispatch('viewFile', {active: true, index});
       }
     } else {
       let { index } = this.props;
@@ -43,32 +32,6 @@ class FileListContent extends React.Component {
         () => this.setState({ count: 0 }),
         500
       );
-    }
-  }
-  getIcon(type) {
-    var icon;
-    switch (type) {
-      case 'image':
-        return <FaFileImage />;
-      case 'video':
-        return <FaFileVideo />;
-      case 'audio':
-        return <FaFileAudio />;
-      case 'text':
-        return <FaFileAlt />;
-      case 'code':
-        return <FaFileCode />;
-      case 'pdf':
-        return <FaFilePdf />;
-      case 'archive':
-        return <FaFileArchive />;
-      case 'sheet':
-        return <FaFileInvoice />;
-      case 'directory':
-        return <FaFolder />;
-      default:
-        icon = <FaFile />;
-      return icon;
     }
   }
   render() {
@@ -93,7 +56,7 @@ class FileListContent extends React.Component {
       : '';
 
     return <div draggable className={className} onClick={this.clickElement}>
-      {this.getIcon(type)}
+      <IconFile type={type}/>
       <span className="name">{name}</span>
       <span className="size">{size}&#8239;mo</span>
     </div>;
