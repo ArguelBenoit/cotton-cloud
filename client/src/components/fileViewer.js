@@ -1,10 +1,10 @@
 import React from 'react';
 import EventEmitter from 'Utils/eventEmitter';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { IoIosClose } from 'react-icons/io';
-import { MdFileDownload } from 'react-icons/md';
+import { /*MdFileDownload, */MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import IconFile from 'Components/iconFile';
+import FileViewerContent from 'Components/fileViewerContent';
 
 class FileViewer extends React.Component {
   constructor(props) {
@@ -22,29 +22,20 @@ class FileViewer extends React.Component {
     let { files, index } = this.props;
     return <div className="fileViewer">
       <header className="u-flex-line">
-        <IoIosClose className="navIcon" onClick={() => EventEmitter.dispatch('viewFile', {active: false, index: null})} />
-        <div>
-          {files[index].name}
-        </div>
+        <MdClose className="navIcon" onClick={() => EventEmitter.dispatch('viewFile', {active: false, index: null})} />
         <IconFile className="iconType" type={files[index].type} />
-        <MdFileDownload className="navIcon" />
+        {files[index].name}
       </header>
       <div className="containerViewer">
-        {
-          index === 0 ?
-            '' :
-            <FaArrowLeft className="navIcon left" onClick={() => EventEmitter.dispatch('viewFile', {active: true, index: index-1})} />
-        }
-        <div className="center">
-          <IconFile type={files[index].type} />
-          <br/>
-          {files[index].name}
+        <div className={'left ' + (index === 0 ? 'unActive' : '')}>
+          <FaArrowLeft className="navIcon" onClick={() => EventEmitter.dispatch('viewFile', {active: true, index: index-1})} />
         </div>
-        {
-          index === files.length - 1 ?
-            '' :
-            <FaArrowRight className="navIcon right" onClick={() => EventEmitter.dispatch('viewFile', {active: true, index: index+1})} />
-        }
+        <div className="center">
+          <FileViewerContent file={files[index]} />
+        </div>
+        <div className={'right ' + (index === files.length - 1 ? 'unActive' : '')}>
+          <FaArrowRight className="navIcon" onClick={() => EventEmitter.dispatch('viewFile', {active: true, index: index+1})} />
+        </div>
       </div>
     </div>;
   }

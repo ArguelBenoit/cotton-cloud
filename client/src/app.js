@@ -45,7 +45,7 @@ class App extends React.Component {
           <div
             className="container"
             style={{
-              paddingTop: '100px',
+              paddingTop: '120px',
               paddingBottom: '30px',
               paddingLeft: this.state.menuActive && window.innerWidth > 900 ? '240px' : ''
             }}

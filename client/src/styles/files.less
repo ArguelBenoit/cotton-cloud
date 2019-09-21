@@ -91,6 +91,10 @@
     }
   }
   .fileViewer {
+    header {
+      border-bottom: 1px dashed #333;
+      padding-bottom: 12px;
+    }
     .navIcon {
       cursor: pointer;
       background: #333;
@@ -107,16 +111,31 @@
       width: 25px;
       height: 25px;
     }
+    .left, .right {
+      width: 50px !important;
+      &.unActive {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+      .navIcon {
+        margin: 0 5px;
+      }
+    }
     .containerViewer {
-      border: 1px solid #444;
       display: flex;
       align-items: center;
       min-height: 200px;
+      background: #111;
+      border: 1px solid #222;
       border-radius: 2px;
       .center {
         width: 100%;
         height: 100%;
         text-align: center;
+        .iconFile {
+          width: 50px;
+          height: 50px;
+        }
       }
     }
   }
