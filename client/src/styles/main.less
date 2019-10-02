@@ -6,8 +6,8 @@ http://getskeleton.com/
 
 /* Google font
 _________________________________________________
-- Rubik (sans-serif)
-- Arvo (serif)
+- sans-serif => Lato
+- serif => Arvo
 */
 
 /*
@@ -133,16 +133,15 @@ are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
   font-size: 62.5%; }
 body {
-  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  font-size: 1.75em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
-  font-weight: 400;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0 0;
   padding: 0 0;
   min-height: 100;
   min-width: 320px; // iphone 5 5s Se
   background: #000; // origin inherit or empty
-  color: #ddd; // origin #222
+  color: #eee; // origin #222
 }
 
 
@@ -189,21 +188,19 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   display: inline-block;
-  height: 38px;
+  height: 40px;
   padding: 0 30px;
   color: #555;
   text-align: center;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: .1rem;
-  text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
   background-color: transparent;
-  border-radius: 3px;
-  border: 1px solid #bbb;
   cursor: pointer;
+  border-radius: 20px;
   box-sizing: border-box; }
 .button:focus,
 button:focus,
@@ -217,7 +214,6 @@ input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
   border: 0px;
-  border-bottom: 2px solid #007fa7;
   color: #FFF;
   background-color: #008ac4; }
 .button.button-primary:active,
@@ -242,15 +238,15 @@ input[type="date"],
 textarea,
 select {
   height: 38px;
-  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  padding: 12px; /* The 6px vertically centers text on FF, ignored by Webkit */
   box-shadow: none;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 8px;
   background: #222;
   border: 0px;
-  border-bottom: 2px solid #444;
   transition-duration: 240ms;
-  color: #ddd
+  color: #eee;
+  font-size: 14px;
 }
 
 /* Removes awkward default styles on some inputs for Firefox */
@@ -294,7 +290,7 @@ label,
 legend {
   display: block;
   width: max-content;
-  font-size: 1.35rem;
+  // font-size: 1.35rem;
   padding: 0px 10px;
   background: #20222a;
   margin-bottom: 8px;
@@ -340,7 +336,7 @@ code {
   white-space: nowrap;
   background: #F1F1F1;
   border: 1px solid #E1E1E1;
-  border-radius: 3px; }
+  border-radius: 8px; }
 pre > code {
   display: block;
   padding: 1rem 1.5rem;
@@ -397,8 +393,6 @@ form {
   align-items: center;
 }
 
-.u-border-error { border-bottom: 2px solid red !important; }
-
 .u-margin-bottom-five { margin-bottom: 5px !important; }
 .u-margin-right-five { margin-right: 5px !important; }
 .u-margin-top-five { margin-top: 5px !important; }
@@ -436,10 +430,10 @@ form {
 .u-width-xxl { width: 800px; }
 .u-width-xxxl { width: 1000px; }
 
-.u-font-size-s { font-size: 1.2rem; }
-.u-font-size-m { font-size: 1.4rem; }
-.u-font-size-l { font-size: 1.6rem; }
-.u-font-size-xl { font-size: 1.8rem; }
+.u-font-size-s { font-size: 1.3rem; }
+.u-font-size-m { font-size: 1.5rem; }
+.u-font-size-l { font-size: 1.7rem; }
+.u-font-size-xl { font-size: 1.9rem; }
 
 .u-padding-height-s { padding: 8px 0; }
 .u-padding-height-m { padding: 12px 0; }

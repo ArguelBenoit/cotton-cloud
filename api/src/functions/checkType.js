@@ -4,7 +4,7 @@ const types = {
   video: ['mp4'],
   audio: ['mp3'],
   text: ['txt'],
-  code: ['json', 'js', 'html', 'jsx', 'php', 'jar'],
+  code: ['json', 'js', 'html', 'css', 'jsx', 'php', 'jar'],
   sheet: ['csv'],
   pdf: ['pdf'],
   archive: ['zip', 'tar', 'gz', 'tgz']

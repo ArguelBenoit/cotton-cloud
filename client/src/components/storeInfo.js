@@ -4,7 +4,7 @@ let StoreInfo = () => {
   let style = {
     width: '16px',
     height: '16px',
-    borderRadius: '2px'
+    borderRadius: '4px'
   };
   return <div className="storeInfo">
     <div className="u-flex-line">

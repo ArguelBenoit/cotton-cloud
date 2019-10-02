@@ -4,6 +4,7 @@ const app = express();
 const apiPort = require('./config.json')['apiPort'];
 
 const files = require('./src/routes/files').router;
+const file = require('./src/routes/file').router;
 const user = require('./src/routes/user').router;
 const disk = require('./src/routes/disk').router;
 
@@ -21,4 +22,5 @@ app.use(function(req, res, next) {
 
 app.use('/user', user());
 app.use('/files', files());
+app.use('/file', file());
 app.use('/disk', disk());

@@ -10,14 +10,6 @@ class FileViewer extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    // history.listen( ({ pathname }) =>  {
-    //   this.setState({});
-    // });
-    // EventEmitter.subscribe('toggleMenu', () => {
-    //   this.setState({ active: !this.state.active });
-    // });
-  }
   render() {
     let { files, index } = this.props;
     return <div className="fileViewer">
