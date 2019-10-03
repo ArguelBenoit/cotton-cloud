@@ -16,8 +16,10 @@ module.exports = name => {
   if (_name.length === 1 || _name[0] === '') {
     type = 'file';
   } else {
-    Object.keys(types).forEach(_type => {
-      if (types[_type].indexOf(_name[_name.length - 1]) > 0)
+    let ext = _name[1];
+    let typesArray = Object.keys(types);
+    typesArray.forEach(_type => {
+      if (types[_type].indexOf(ext) > 0)
         type = _type;
     });
   }
