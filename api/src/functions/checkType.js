@@ -1,6 +1,8 @@
 
+// why we don't use a mime type ? because we can't show all type file with html.
+
 const types = {
-  image: ['jpg', 'jpeg', 'png', 'ico', 'svg'],
+  image: ['jpg', 'jpeg', 'png', 'ico', 'svg', 'gif'],
   video: ['mp4'],
   audio: ['mp3'],
   text: ['txt'],
@@ -16,8 +18,10 @@ module.exports = name => {
   if (_name.length === 1 || _name[0] === '') {
     type = 'file';
   } else {
-    Object.keys(types).forEach(_type => {
-      if (types[_type].indexOf(_name[_name.length - 1]) > 0)
+    let ext = _name[_name.length - 1];
+    let arrayOfTypes = Object.keys(types);
+    arrayOfTypes.forEach(_type => {
+      if (types[_type].indexOf(ext) > -1)
         type = _type;
     });
   }
