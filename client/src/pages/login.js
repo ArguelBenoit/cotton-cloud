@@ -59,24 +59,26 @@ export default class extends React.Component {
             placeholder="Username"
             onChange={e => this.changeValue(e, 'name')}
           />
-          <input
-            ref="password"
-            value={password}
-            className="u-full-width"
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
-            onChange={e => this.changeValue(e, 'password')}
-          />
-          {!showPassword ?
-            <FaEyeSlash
-              className="eye-icon"
-              onClick={() => this.setState({showPassword: !showPassword})}
-            /> :
-            <FaEye
-              className="eye-icon"
-              onClick={() => this.setState({showPassword: !showPassword})}
+        <div className="containerPassword">
+            <input
+              ref="password"
+              value={password}
+              className="u-full-width"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password"
+              onChange={e => this.changeValue(e, 'password')}
             />
-          }
+            {!showPassword ?
+              <FaEyeSlash
+                className="eye-icon"
+                onClick={() => this.setState({showPassword: !showPassword})}
+              /> :
+              <FaEye
+                className="eye-icon"
+                onClick={() => this.setState({showPassword: !showPassword})}
+              />
+            }
+          </div>
           <input
             type="submit"
             value="Submit"

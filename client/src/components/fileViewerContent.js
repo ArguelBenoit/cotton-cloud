@@ -9,7 +9,10 @@ class FileViewerContent extends React.Component {
     this.request = this.request.bind(this);
     this.resetState = this.resetState.bind(this);
     this.state = {
-      base64: null
+      base64: null,
+      typeMIME: null,
+      type: null,
+      header: null
     };
   }
   componentDidMount() {
@@ -32,13 +35,20 @@ class FileViewerContent extends React.Component {
     }
   }
   resetState() {
-    this.setState({base64: null});
+    this.setState({
+      base64: null,
+      typeMIME: null,
+      type: null,
+      header: null
+    });
   }
   request(path) {
     request('get', `/file/base64?path=${path}`).then(res => {
-      console.log(res);
       this.setState({
-        base64: res.data.base64
+        base64: res.data.base64,
+        typeMIME: res.data.typeMIME,
+        type: res.data.typeMIME,
+        header: res.data.header
       });
     }).catch(err => {
       console.log(err);
@@ -46,11 +56,11 @@ class FileViewerContent extends React.Component {
   }
   render() {
     const { file } = this.props;
-    const { base64 } = this.state;
+    const { base64, header } = this.state;
     let dom;
     switch (file.type) {
       case 'image':
-        dom = <img src={base64} />;
+        dom = <img src={header + base64} width="100%" />;
         break;
       default:
         dom = <div>

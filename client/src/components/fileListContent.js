@@ -35,17 +35,7 @@ class FileListContent extends React.Component {
     }
   }
   render() {
-    const {
-      isDirectory,
-      size,
-      selected,
-      name,
-      type
-      /*
-      path,
-      shortPath,
-      */
-    } = this.props.info;
+    const { size, isDirectory, selected, name, type } = this.props.info;
 
     let className = 'fileListContent u-flex-line ';
     isDirectory
@@ -55,10 +45,29 @@ class FileListContent extends React.Component {
       ? className += 'clicked '
       : '';
 
+    let _size = {
+      size: 0,
+      type: 'B'
+    };
+
+    if (size < 1000)
+      _size = { size, type: 'B'};
+    else if (size >= 1000)
+      _size = { size: size/1000, type: 'KB'};
+    else if (size >= 1000000)
+      _size = { size: size/1000000, type: 'MB'};
+    else if (size >= 1000000000)
+      _size = { size: size/1000000000, type: 'GB'};
+    else if (size >= 1000000000000)
+      _size = { size: size/1000000000000, type: 'TB'};
+
+
     return <div draggable className={className} onClick={this.clickElement}>
       <IconFile type={type}/>
       <span className="name">{name}</span>
-      <span className="size">{size}&#8239;mo</span>
+      <span className="size">
+        {_size.size.toFixed(2)}&#8239;{_size.type}
+      </span>
     </div>;
   }
 }
