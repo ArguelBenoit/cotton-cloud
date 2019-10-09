@@ -14,16 +14,10 @@ import { getJwtCookie } from 'Utils/jwtCookie';
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      menuActive: false
-    };
   }
   componentDidMount() {
-    EventEmitter.subscribe('toggleMenu', () => {
-      this.setState({ menuActive: !this.state.menuActive });
-    });
-    history.listen(() =>  {
-      EventEmitter.dispatch('viewFile', {active: false});
+    history.listen(() => {
+      EventEmitter.dispatch('viewFile', { active: false });
     });
   }
   render() {
@@ -46,8 +40,7 @@ class App extends React.Component {
             className="container"
             style={{
               paddingTop: '120px',
-              paddingBottom: '30px',
-              paddingLeft: this.state.menuActive && window.innerWidth > 900 ? '240px' : ''
+              paddingBottom: '30px'
             }}
           >
             <Switch>
