@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'Utils/request';
 
-class StoreInfo extends React.Component {
+class SideBarStoreInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,4 +46,4 @@ class StoreInfo extends React.Component {
   }
 }
 
-export default StoreInfo;
+export default SideBarStoreInfo;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 let Error = ({ location }) => {
-  return <div className="container">
+  return <div className="container" style={{paddingTop: 100}}>
     <h2>{location.pathname}: do not exist or you do not have permission to access it.</h2>
   </div>;
 };

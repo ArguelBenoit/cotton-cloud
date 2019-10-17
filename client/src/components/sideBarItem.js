@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-let LiSideBar = props => {
+let SideBarItem = props => {
   const { route, icon, name, location, action } = props;
   if (!route) {
     return <a className="liSideBar" onClick={action}>
@@ -24,11 +24,11 @@ let LiSideBar = props => {
   </Link>;
 };
 
-LiSideBar.defaultProps = {
+SideBarItem.defaultProps = {
   location: ''
 };
 
-LiSideBar.propTypes = {
+SideBarItem.propTypes = {
   route: PropTypes.string,
   name: PropTypes.oneOfType([
     PropTypes.string,
@@ -46,4 +46,4 @@ LiSideBar.propTypes = {
   action: PropTypes.func
 };
 
-export default LiSideBar;
+export default SideBarItem;

@@ -2,9 +2,9 @@
 // why we don't use a mime type ? because we can't show all type file with html.
 
 const types = {
-  image: ['jpg', 'jpeg', 'png', 'ico', 'svg', 'gif'],
   video: ['mp4'],
   audio: ['mp3'],
+  image: ['jpg', 'jpeg', 'png', 'ico', 'svg', 'gif'],
   text: ['txt'],
   code: ['json', 'js', 'html', 'css', 'jsx', 'php', 'jar'],
   sheet: ['csv'],

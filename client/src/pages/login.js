@@ -47,7 +47,7 @@ export default class extends React.Component {
       name,
       password
     } = this.state;
-    return <div className="login u-max-width-m" style={{margin: 'auto'}}>
+    return <div className="container login u-max-width-m" style={{paddingTop: 100}}>
       <div className="row">
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>

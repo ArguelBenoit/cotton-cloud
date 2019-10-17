@@ -25,29 +25,19 @@ class App extends React.Component {
       {!getJwtCookie() ?
         <div>
           <Header noMenu />
-          <div className="container container-login-page" style={{paddingTop: '100px'}}>
-            <Switch>
-              <Route path="/" exact component={Login} />
-              <Route component={Error} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/" exact component={Login} />
+            <Route component={Error} />
+          </Switch>
         </div>
         :
         <div>
           <Header />
           <SideBar />
-          <div
-            className="container"
-            style={{
-              paddingTop: '120px',
-              paddingBottom: '30px'
-            }}
-          >
-            <Switch>
-              <Route path="/" exact component={Files} />
-              <Route component={Error} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/" exact component={Files} />
+            <Route component={Error} />
+          </Switch>
         </div>
       }
     </Router>;

@@ -122,17 +122,14 @@ export default class extends React.Component {
   }
   render() {
     const { filesSorted, sort, viewerActive, viewerIndex } = this.state;
-    if (viewerActive) {
-      return <div className="filePage">
-        <FileViewer files={filesSorted} index={viewerIndex} />
+    const fileListProps = { filesSorted, sort };
+    if (!viewerActive) {
+      return <div className="filePage container" style={{paddingTop: 120}}>
+        <FileList {...fileListProps} />
       </div>;
     } else {
-      const fileListProps = {
-        filesSorted,
-        sort
-      };
       return <div className="filePage">
-        <FileList {...fileListProps} />
+        <FileViewer files={filesSorted} index={viewerIndex} />
       </div>;
     }
   }

@@ -2,12 +2,11 @@ import React from 'react';
 import history from 'Utils/history';
 import { destroyJwtCookie } from 'Utils/jwtCookie';
 import { FaHome, FaSkull } from 'react-icons/fa';
-import LiSideBar from 'Components/liSideBar';
-import StoreInfo from 'Components/storeInfo';
+import SideBarItem from 'Components/sideBarItem';
+import SideBarStoreInfo from 'Components/sideBarStoreInfo';
 import PropTypes from 'prop-types';
 import 'Styles/sideBar.less';
 import EventEmitter from 'Utils/eventEmitter';
-
 
 const firstUl = [
   {
@@ -22,7 +21,6 @@ const firstUl = [
     action: null
   }
 ];
-
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -51,12 +49,12 @@ class SideBar extends React.Component {
         <main>
           <ul>
             {firstUl.map(
-              (e, i) => <LiSideBar key={'firstMenu' + i} location={location} {...e} />
+              (e, i) => <SideBarItem key={'firstMenu' + i} location={location} {...e} />
             )}
           </ul>
         </main>
         <footer>
-          <StoreInfo/>
+          <SideBarStoreInfo/>
         </footer>
       </div>
     </div>;
