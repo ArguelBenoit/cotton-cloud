@@ -50,6 +50,7 @@ class FileViewerContentDynamic extends React.Component {
     // });
   // }
   render() {
+    console.log('render dynamic');
     const { loaded } = this.state;
     return <div>
       {

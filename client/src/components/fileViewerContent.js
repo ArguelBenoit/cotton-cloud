@@ -5,22 +5,24 @@ import FileViewerContentDynamic from 'Components/fileViewerContentDynamic';
 import FileViewerContentInactive from 'Components/fileViewerContentInactive';
 
 let FileViewerContent = props => {
+  const { type } = props.file;
   const { file } = props;
-  let dom;
-  switch (file.type) {
-    case 'image' || 'pdf' || 'sheet' || 'text' || 'code':
-      dom = <FileViewerContentStatic {...file} />;
-      break;
-    case 'video' || 'audio':
-      dom = <FileViewerContentDynamic {...file} />;
-      break;
-    case 'archive' || 'file':
-      dom = <FileViewerContentInactive {...file} />;
-      break;
-    default:
-      dom = <FileViewerContentInactive {...file} />;
+  if ( // 'image' || 'pdf' || 'sheet' || 'text' || 'code'
+    type === 'image' ||
+    type === 'pdf' ||
+    type === 'sheet' ||
+    type === 'text' ||
+    type === 'code'
+  ) {
+    return <FileViewerContentStatic {...file} />;
+  } else if ( // 'audio' || 'video'
+    type === 'audio' ||
+    type === 'video'
+  ) {
+    return <FileViewerContentDynamic {...file} />;
+  } else { // 'archive' || 'file' || 'folder' || other
+    return <FileViewerContentInactive {...file} />;
   }
-  return dom;
 };
 
 FileViewerContent.propTypes = {

@@ -50,29 +50,58 @@ class FileViewerContentStatic extends React.Component {
   }
   render() {
     const { base64, header, loaded } = this.state;
-    return <div
-      className="viewerImage"
-      style={{
-        height: '100%'
-      }}
-    >
-      {!loaded ? <Loading /> : ''}
-      {base64 ?
-        <img
-          className="viewerImageImg"
+    console.log('render static', header, base64);
+    const { type } = this.props;
+    let container;
+    switch (type) {
+      case 'image':
+        container = <img
           src={header + base64}
           style={{
             maxHeight: window.innerHeight - 85,
             maxWidth: window.innerWidth - 30
           }}
-        /> : ''
+        />;
+        break;
+      case 'pdf'/* || 'sheet' || 'text' || 'code'*/:
+        container = <object
+          type="application/pdf"
+          data={header + base64}
+          style={{
+            height: window.innerHeight - 85,
+            width: window.innerWidth - 30
+          }}
+        />;
+        // container = <img
+        //   className="viewerStaticImg"
+        //   src={header + base64}
+        //   style={{
+        //     maxHeight: window.innerHeight - 85,
+        //     maxWidth: window.innerWidth - 30
+        //   }}
+        // />;
+        break;
+      default:
+        container = <object />;
+    }
+    return <div
+      className="viewerStatic"
+      style={{
+        height: '100%'
+      }}
+    >
+      {!loaded ? <Loading /> : ''}
+      {base64
+        ? container
+        : ''
       }
     </div>;
   }
 }
 
 FileViewerContentStatic.propTypes = {
-  shortPath: PropTypes.string
+  shortPath: PropTypes.string,
+  type: PropTypes.string
 };
 
 export default FileViewerContentStatic;
