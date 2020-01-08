@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import request from 'Utils/request';
 import Loading from 'Components/loading';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+
 
 class FileViewerContentStatic extends React.Component {
   constructor(props) {
@@ -10,7 +12,6 @@ class FileViewerContentStatic extends React.Component {
     this.resetState = this.resetState.bind(this);
     this.state = {
       base64: null,
-      typeMIME: null,
       type: null,
       header: null,
       loaded: false
@@ -28,7 +29,6 @@ class FileViewerContentStatic extends React.Component {
   resetState() {
     this.setState({
       base64: null,
-      typeMIME: null,
       type: null,
       header: null,
       loaded: false
@@ -39,7 +39,6 @@ class FileViewerContentStatic extends React.Component {
     request('get', `/file/base64?path=${path}`).then(res => {
       this.setState({
         base64: res.data.base64,
-        typeMIME: res.data.typeMIME,
         type: res.data.typeMIME,
         header: res.data.header,
         loaded: true
@@ -50,12 +49,12 @@ class FileViewerContentStatic extends React.Component {
   }
   render() {
     const { base64, header, loaded } = this.state;
-    console.log('render static', header, base64);
-    const { type } = this.props;
+    const { type, name } = this.props;
     let container;
     switch (type) {
       case 'image':
         container = <img
+          className="image"
           src={header + base64}
           style={{
             maxHeight: window.innerHeight - 85,
@@ -63,8 +62,9 @@ class FileViewerContentStatic extends React.Component {
           }}
         />;
         break;
-      case 'pdf'/* || 'sheet' || 'text' || 'code'*/:
+      case 'pdf':
         container = <object
+          className="pdf"
           type="application/pdf"
           data={header + base64}
           style={{
@@ -72,17 +72,29 @@ class FileViewerContentStatic extends React.Component {
             width: window.innerWidth - 30
           }}
         />;
-        // container = <img
-        //   className="viewerStaticImg"
-        //   src={header + base64}
-        //   style={{
-        //     maxHeight: window.innerHeight - 85,
-        //     maxWidth: window.innerWidth - 30
-        //   }}
-        // />;
+        break;
+      case 'code':
+        container = <div className="code" style={{ height: window.innerHeight - 85 }}>
+          <Highlight {...defaultProps} code={atob(base64)} language={name.split('.')[1]}>
+            {({ className, style, tokens, getLineProps, getTokenProps }) => (
+              <pre className={className} style={style}>
+                {tokens.map((line, i) => (
+                  <div {...getLineProps({ line, key: i })}>
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
+                  </div>
+                ))}
+              </pre>
+            )}
+          </Highlight>
+        </div>;
+        break;
+      case 'sheet':
+        container = <div className="sheet"/>;
         break;
       default:
-        container = <object />;
+        container = <div />;
     }
     return <div
       className="viewerStatic"
@@ -101,7 +113,8 @@ class FileViewerContentStatic extends React.Component {
 
 FileViewerContentStatic.propTypes = {
   shortPath: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  name: PropTypes.string
 };
 
 export default FileViewerContentStatic;

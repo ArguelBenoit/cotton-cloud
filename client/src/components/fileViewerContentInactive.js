@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import IconFile from 'Components/iconFile';
 
 let FileViewerContentInactive = props => {
-  console.log('render inactive');
   let { type, name, shortPath, size } = props;
   return <div className="viewerInactive">
     <div className="content">

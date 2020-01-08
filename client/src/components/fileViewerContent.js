@@ -7,20 +7,19 @@ import FileViewerContentInactive from 'Components/fileViewerContentInactive';
 let FileViewerContent = props => {
   const { type } = props.file;
   const { file } = props;
-  if ( // 'image' || 'pdf' || 'sheet' || 'text' || 'code'
+  if (
     type === 'image' ||
     type === 'pdf' ||
-    type === 'sheet' ||
-    type === 'text' ||
-    type === 'code'
+    type === 'code' ||
+    type === 'sheet'
   ) {
     return <FileViewerContentStatic {...file} />;
-  } else if ( // 'audio' || 'video'
+  } else if (
     type === 'audio' ||
     type === 'video'
   ) {
     return <FileViewerContentDynamic {...file} />;
-  } else { // 'archive' || 'file' || 'folder' || other
+  } else { // 'archive' || 'folder' || 'file' || 'unknow'
     return <FileViewerContentInactive {...file} />;
   }
 };

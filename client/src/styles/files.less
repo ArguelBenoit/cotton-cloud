@@ -129,17 +129,50 @@
       min-height: 24px;
     }
     //
+    //
     .viewerStatic {
       max-width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      img, object {
-        border-radius: 4px;
+      .image {
+        border-radius: 6px;
         text-align: center;
       }
+      .pdf {
+        border-radius: 6px;
+        text-align: center;
+        max-width: 100%;
+        @media (min-width: 500px) { max-width: 85%; }
+        @media (min-width: 900px) { max-width: 70%; }
+      }
+      .code {
+        border-radius: 6px;
+        background: #ccc;
+        color: #153c6f;
+        min-height: 200px;
+        box-sizing: border-box;
+        overflow: hidden;
+        width: 100%;
+        border: 7px solid #59536f;
+        @media (min-width: 500px) { width: 85%; }
+        @media (min-width: 900px) { width: 70%; }
+        .prism-code {
+          overflow: auto;
+          box-sizing: border-box;
+          width: 100%;
+          height: 100%;
+          margin: 0 0;
+          padding: 15px;
+        }
+      }
+      .csv {
+        
+      }
     }
+    //
+    //
     .viewerInactive {
       max-width: 100%;
       height: 100%;
@@ -159,6 +192,11 @@
         }
       }
     }
-    .viewerDynamic {}
+    //
+    //
+    .viewerDynamic {
+      .audio {}
+      .video {}
+    }
   }
 }
