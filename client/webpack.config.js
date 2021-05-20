@@ -22,8 +22,6 @@ module.exports = {
     devServer: {
         contentBase: './',
         publicPath: '/dist/',
-        // for docker env
-        // host: '0.0.0.0',
         port: clientPort,
         historyApiFallback: true
     },

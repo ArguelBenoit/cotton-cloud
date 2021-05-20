@@ -1,4 +1,4 @@
 {
-  "apiUrl": "http://localhost:81",
-  "clientPort": "3000"
+  "apiUrl": "http://localhost:8082",
+  "clientPort": "8081"
 }
